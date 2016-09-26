@@ -1,8 +1,12 @@
+<p><%= notice %></p>
+
 <h1>ニュース一覧</h1>
 
 <% @posts.each do |post| %>
   <p>タイトル:<%= post.post_title %></p>
   <p>本文:<%= post.post_message %></p>
+  <%= link_to "編集", edit_post_path(post.id) %>
+  <%= link_to "削除", post_path(post.id), method: :delete, data: {confirm: '本当に削除しますか？'} %>
 <% end %>
 
 <%= link_to "新規作成", new_post_path %>

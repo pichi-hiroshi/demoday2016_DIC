@@ -1,0 +1,9 @@
+<h1>ニュース一覧</h1>
+
+<% @boards.each do |board| %>
+  <p>URL:<%= board.board_url %></p>
+  <p>タイトル:<%= board.board_title %></p>
+  <p>本文:<%= board.board_content %></p>
+<% end %>
+
+<%= link_to "新規作成", new_board_path %>
