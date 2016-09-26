@@ -1,0 +1,11 @@
+<%= form_for(@post) do |f| %>
+  <%= f.label :post_title %>
+  <%= f.text_field :post_title %>
+  <br>
+  <%= f.label :post_message %>
+  <%= f.text_field :post_message %>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "一覧にもどる", posts_path %>

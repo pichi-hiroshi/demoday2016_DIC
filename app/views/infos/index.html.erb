@@ -1,0 +1,9 @@
+<h1>info一覧</h1>
+
+<% @infos.each do |info| %>
+  <p>日付:<%= info.info_date %></p>
+  <p>本文:<%= info.info_title %></p>
+  <p>内容:<%= info.info_content %></p>  
+<% end %>
+
+<%= link_to "新規作成", new_info_path %>

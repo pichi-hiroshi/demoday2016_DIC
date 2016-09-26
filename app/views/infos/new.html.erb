@@ -1,0 +1,14 @@
+<%= form_for(@info) do |f| %>
+  <%= f.label :info_date %>
+  <%= f.text_field :info_date %>
+  <br>
+  <%= f.label :info_title %>
+  <%= f.text_field :info_title %>
+  <br>
+  <%= f.label :info_content %>
+  <%= f.text_field :info_content %>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "一覧にもどる", infos_path %>

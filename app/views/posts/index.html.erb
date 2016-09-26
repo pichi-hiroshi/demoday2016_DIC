@@ -1,0 +1,8 @@
+<h1>ニュース一覧</h1>
+
+<% @posts.each do |post| %>
+  <p>タイトル:<%= post.post_title %></p>
+  <p>本文:<%= post.post_message %></p>
+<% end %>
+
+<%= link_to "新規作成", new_post_path %>
