@@ -1,0 +1,15 @@
+<h3>以下の内容で送信する</h3>
+
+<%= form_for(@post) do |f| %>
+  <%= f.hidden_field :post_title %>
+  <%= f.hidden_field :post_message %>
+  <p>タイトル:<%= @post.post_title %></p>
+  <p>本文:<%= @post.post_message %></p>
+  <%= f.submit"登録する" %>
+<% end %>
+
+<%= form_for(@post, url: new_post_path, method: 'get') do |f| %>
+  <%= f.hidden_field :post_title %>
+  <%= f.hidden_field :post_message %>
+  <%= f.submit "戻る", name: 'back' %>
+<% end %>

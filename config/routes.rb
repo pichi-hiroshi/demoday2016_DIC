@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :posts, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :posts, only: [:index, :new, :create, :edit, :update, :destroy] do
+    collection do
+      post :confirm
+    end
+  end
+    
   resources :infos, only: [:index, :new, :create]
   resources :boards, only: [:index, :new, :create]
 
