@@ -46,3 +46,8 @@ end
 gem 'twitter-bootstrap-rails'
 
 gem 'devise'
+
+gem 'therubyracer', platforms: :ruby
+gem 'rails_admin'
+
+gem 'cancan'
