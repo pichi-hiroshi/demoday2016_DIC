@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     
   resources :infos, only: [:index, :new, :create]
   resources :boards, only: [:index, :new, :create]
+  
+  root 'top#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
