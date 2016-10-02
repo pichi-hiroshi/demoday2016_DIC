@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: {
+    registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
-  }
+}
 
 
   # The priority is based upon order of creation: first created -> highest priority.

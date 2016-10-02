@@ -3,6 +3,7 @@
 <h1>ニュース一覧</h1>
 
 <% @posts.each do |post| %>
+  <p><%#= profile_img(post) if profile_img(post) %> <%#= blog.username %>が投稿しました。</p> 
   <p>タイトル:<%= post.post_title %></p>
   <p>本文:<%= post.post_message %></p>
   <%= link_to "編集", edit_post_path(post.id) %>
