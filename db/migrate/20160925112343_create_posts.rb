@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.text :post_message
       t.text :datasource
       t.text :datasource_url
+      t.integer :user_id
 
       t.timestamps null: false
     end
