@@ -6,6 +6,11 @@ class CreatePosts < ActiveRecord::Migration
       t.text :datasource
       t.text :datasource_url
       t.integer :user_id
+      t.string :user_name
+      t.string :provider
+      t.string :image_url
+      t.string :avatar
+      t.string :name
 
       t.timestamps null: false
     end

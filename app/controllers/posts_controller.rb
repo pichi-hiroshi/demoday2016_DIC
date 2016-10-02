@@ -21,6 +21,10 @@ class PostsController < ApplicationController
     
     @post = Post.new(posts_params)
     @post.user_id = current_user.id
+    @post.user_name = current_user.name
+    @post.provider = current_user.provider
+    @post.image_url = current_user.image_url
+    @post.avatar = current_user.avatar
     if @post.save
       redirect_to posts_path, notice: "作成しました！"
     else

@@ -38,6 +38,11 @@ ActiveRecord::Schema.define(version: 20161002123142) do
     t.text     "datasource"
     t.text     "datasource_url"
     t.integer  "user_id"
+    t.string   "user_name"
+    t.string   "provider"
+    t.string   "image_url"
+    t.string   "avatar"
+    t.string   "name"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
