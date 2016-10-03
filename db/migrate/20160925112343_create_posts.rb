@@ -1,8 +1,8 @@
 class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
-      t.string :post_title
-      t.text :post_message
+      t.string :title
+      t.text :message
       t.text :datasource
       t.text :datasource_url
       t.integer :user_id

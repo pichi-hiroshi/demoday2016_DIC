@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy, :show]
   
   def index
     @posts = Post.all
@@ -13,6 +13,11 @@ class PostsController < ApplicationController
     else
       @post = Post.new
     end
+  end
+  
+  def show
+    @comment = @post.comments.build
+    @comments = @post.comments
   end
   
   def create
@@ -52,7 +57,7 @@ class PostsController < ApplicationController
   
   private
     def posts_params
-      params.require(:post).permit(:post_title,:post_message,:datasource,:datasource_url)
+      params.require(:post).permit(:title,:message)
     end
     
     def set_post

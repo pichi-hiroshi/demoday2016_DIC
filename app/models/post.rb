@@ -1,7 +1,8 @@
 class Post < ActiveRecord::Base
-    validates :post_title, presence: true
-    validates :post_message, presence: true
+    validates :title, presence: true
+    validates :message, presence: true
     
     belongs_to :user
+    has_many :comments, dependent: :destroy
     
 end

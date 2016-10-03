@@ -1,13 +1,20 @@
-<p><%= notice %></p>
-
-<h1>ニュース一覧</h1>
-
-<% @posts.each do |post| %>
-  <p><%= profile_img(post) if profile_img(post) %> <%= post.user_name %>が投稿しました。</p> 
-  <p>タイトル:<%= post.post_title %></p>
-  <p>本文:<%= post.post_message %></p>
-  <%= link_to "編集", edit_post_path(post.id) %>
-  <%= link_to "削除", post_path(post.id), method: :delete, data: {confirm: '本当に削除しますか？'} %>
-<% end %>
-
-<%= link_to "新規作成", new_post_path %>
+<div class="container">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+    <p><%= notice %></p>
+    
+    <h1>ニュース一覧</h1>
+    
+    <%= link_to "スライドを作成する", new_post_path, class: 'btn btn-default' %>
+    <% @posts.each do |post| %>
+      <div class="row">
+        # ブログのタイトルにlink_toでリンクを設定します。
+        <%= link_to post_path(post) do %>
+          <h4><strong><%= post.title %></strong></h4>
+        <% end %>
+        <p><%= post.message %></p>
+        <%= link_to "編集", edit_post_path(post.id), class: 'btn btn-default btn-sm btn-success' %>
+        <%= link_to "削除", post_path(post.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
+      </div>
+    <% end %>
+  </div>
+</div>

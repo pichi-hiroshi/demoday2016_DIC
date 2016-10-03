@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-#a
-
-  resources :posts, only: [:index, :new, :create, :edit, :update, :destroy] do
+  resources :posts do
+    resources :comments
+    
     collection do
-      post :confirm
+      post :confirm #ここのpostはコントローラー名にかかわらず一緒"
     end
   end
     
