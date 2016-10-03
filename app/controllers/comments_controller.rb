@@ -28,8 +28,15 @@ class CommentsController < ApplicationController
     end
   end
   
-  private
-    # ストロングパラメーター
+  def destroy
+    @comment = current_user.comments.build(comment_params)
+    @post = @comment.post
+    @post.destroy
+    redirect_to post_path(@post)
+  end
+  
+ private
+     ストロングパラメーター
     def comment_params
       params.require(:comment).permit(:post_id, :content)
     end
