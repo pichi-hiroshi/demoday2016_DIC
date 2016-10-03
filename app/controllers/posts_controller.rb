@@ -37,6 +37,7 @@ class PostsController < ApplicationController
     end
   end
   
+  
   def edit
   end
   
