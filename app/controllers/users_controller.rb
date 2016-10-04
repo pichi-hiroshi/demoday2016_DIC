@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_users, only: [:show]
   
-  
   def index
     @users = User.all
   end
