@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+
+  get 'relationships/destroy'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-
+  
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
+  
+  resources :users, only: [:index]
   resources :posts do
     resources :comments
     
@@ -12,6 +21,7 @@ Rails.application.routes.draw do
     
   resources :infos, only: [:index, :new, :create]
   resources :boards, only: [:index, :new, :create]
+  resources :relationships, only: [:create, :destroy]
   
   root 'top#index'
   
@@ -20,10 +30,7 @@ Rails.application.routes.draw do
   end
 
 
-  devise_for :users, controllers: {
-    registrations: "users/registrations",
-    omniauth_callbacks: "users/omniauth_callbacks"
-}
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
