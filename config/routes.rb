@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'relationships/create'
-
-  get 'relationships/destroy'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
@@ -10,7 +7,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
   
-  resources :users, only: [:index]
+  resources :users, only: [:index, :show]
   resources :posts do
     resources :comments
     
