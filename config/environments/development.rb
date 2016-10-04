@@ -38,12 +38,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-<<<<<<< HEAD
+
   
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :letter_opener_web
-=======
+
   BetterErrors::Middleware.allow_ip! "0.0.0.0/0"  
->>>>>>> 436416ba0c0a7d59f13d61c1e2ac289781020fc8
+
   
 end
