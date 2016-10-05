@@ -1,5 +1,4 @@
-class TopController < ApplicationController
-  
+class DashboardsController < ApplicationController
   before_action :check_login
   
   def index

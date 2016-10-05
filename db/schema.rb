@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003100215) do
+ActiveRecord::Schema.define(version: 20161005085610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20161003100215) do
     t.text     "board_url"
     t.string   "board_title"
     t.text     "board_content"
+    t.integer  "user_id"
+    t.integer  "dashboard_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -34,6 +36,11 @@ ActiveRecord::Schema.define(version: 20161003100215) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "dashboards", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "infos", force: :cascade do |t|
     t.datetime "info_date"
@@ -54,6 +61,7 @@ ActiveRecord::Schema.define(version: 20161003100215) do
     t.string   "image_url"
     t.string   "avatar"
     t.string   "name"
+    t.integer  "board_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
