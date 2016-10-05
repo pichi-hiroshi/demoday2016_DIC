@@ -2,7 +2,9 @@
 
 <% @boards.each do |board| %>
   <p>URL:<%= board.board_url %></p>
-  <p>タイトル:<%= board.board_title %></p>
+  <%= link_to board_path(board) do %>
+    <p>タイトル:<%= board.board_title %></p>
+  <% end %>
   <p>本文:<%= board.board_content %></p>
 <% end %>
 

@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20161005085610) do
     t.text     "board_url"
     t.string   "board_title"
     t.text     "board_content"
+    t.integer  "user_id"
     t.integer  "dashboard_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20161005085610) do
     t.string   "image_url"
     t.string   "avatar"
     t.string   "name"
+    t.integer  "board_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

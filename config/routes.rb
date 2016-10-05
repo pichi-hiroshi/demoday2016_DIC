@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
     
   resources :infos, only: [:index, :new, :create]
-  resources :boards, only: [:index, :new, :create]
+  resources :boards, only: [:index, :new, :create, :show]
   resources :relationships, only: [:create, :destroy]
   
   resources :entrance, only: [:index]
