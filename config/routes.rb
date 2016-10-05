@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
+
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+
   
   devise_for :users, controllers: {
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
+  
+
   
   resources :users, only: [:index, :show]
   resources :posts do
@@ -20,7 +26,9 @@ Rails.application.routes.draw do
   resources :boards, only: [:index, :new, :create]
   resources :relationships, only: [:create, :destroy]
   
-  root 'top#index'
+  resources :entrance, only: [:index]
+  
+  root 'dashboards#index'
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
