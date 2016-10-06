@@ -3,3 +3,16 @@
 <p><%= @user.name %></p>
 <p><%= profile_img(@user) %></p>
 <p><%= @user.email %></p>
+
+
+<p>これを編集</p>
+
+<p>followed size:<%= @followed.size %></p>
+<% @followed.each do |f| %>
+    <p>followed<%= f.email %></p>
+<% end %>
+
+<p>follower size:<%= @follower.size %></p>
+<% @follower.each do |f| %>
+    <p><%= f.name %></p>
+<% end %>

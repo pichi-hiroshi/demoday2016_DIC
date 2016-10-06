@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+body{
+    font-family:"游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
+}
+footer {
+  width: 100%;
+  background-color:#7D7D7D;
+  padding: 20px 0 10px 0;
+  color: #fff;
+  margin: auto;
+  padding-bottom: 10px;
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+}

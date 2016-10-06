@@ -11,10 +11,7 @@
 
   <header>
     <ul>
-      <li><a href="#">Achieve</a></li>
-      <li><a href="#">トップページ</a></li>
-      <li><a href="#">お問い合わせ</a></li>
-      <li><a href="#">ブログ</a></li>
+      <li><a href="#">Newslide</a></li>
     <% if user_signed_in? %>
       <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
       <li><%= link_to 'マイページ', edit_user_registration_path %></li>
@@ -29,8 +26,7 @@
 <%= yield %>
 
   <footer>
-    <p>運営会社DIVE INTO CODE株式会社</p>
-    <p>© 2015-2016 Copyright DIVE INTO CODE Corp.</p>
+    <p>NEW Slide</p>
   </footer>
 
 </body>
