@@ -68,3 +68,5 @@ gem 'carrierwave'
 gem 'rmagick'
 
 gem 'faker'
+
+gem 'jquery-turbolinks'
