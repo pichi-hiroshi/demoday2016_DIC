@@ -1,30 +1,35 @@
 // Place all the styles related to the entrance controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.sec1{
-    background-color: #F9F9F9;
-}
+
+/* ------ヘッダー------
+ */
 header {
   width: 100%;
   background-color: #fff;
-  height: 54px;
+//  height: 100px;
   border-bottom:1px solid rgb(224,224,224);
+  position:fixed;
+  overflow:auto;
 }
+
 header ul {
-  margin: 0 auto;
+  margin: 25px 0;
   list-style: none;
+  text-align:right;
 }
 
 header ul a {
   display: block;
-  padding: 15px;
+  margin:5px;
+  padding: 10px 15px;
   text-decoration: none;
   color: #222;
   font-weight:bold;
 }
 
 header li {
-  float: left;
+  float: right;
   width: auto;
 }
 
@@ -34,20 +39,19 @@ header ul:after {
   clear: both;
 }
 
-.main-header {
-  padding-bottom: 15%;
-  width: 100%;
-  background-size: cover;
-  background-image: url("header.jpg");
-  background-attachment: fixed;
+#loginfield{
+  overflow:hidden;
 }
 
-.main-header img {
-  display: block;
-  margin: 0 auto;
-  width: 25%;
-  padding-top: 15%;
+
+
+.sec1{
+    background-color: #F6F6F6;
 }
+.sec2{
+  background-color:#FFF;
+}
+
 
 .about {
   background-color: white;
@@ -84,6 +88,7 @@ body {
   color: blue;
   padding-top: 10px;
 }
-.field>img{
+.field img{
     border-radius:50%;
 }
+

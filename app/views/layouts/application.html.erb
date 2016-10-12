@@ -8,23 +8,42 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
+<% if user_signed_in? %>
+  <header style="height:100px">
+<% else %>
+  <header style="height:130px">
+    <div class="beforeloginbar">
+      <div class="container">
+        <p><strong>Newslide</strong>｜ニュースにグラフ付きのコメントをくっつけてシェアしよう</p>
+      </div>
+    </div>
+<% end %>
+  
+    <div class="container">
+      <a href="/" id="logo"><img src="<%= asset_path "newslide_logo2.PNG"%>" /></a>
+      <ul>
+      <% if user_signed_in? %>
+        <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
+        <li><%= link_to 'マイページ', edit_user_registration_path %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <% else %>
 
-  <header>
-    <ul>
-      <li><a href="#">Newslide</a></li>
-    <% if user_signed_in? %>
-      <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
-      <li><%= link_to 'マイページ', edit_user_registration_path %></li>
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-    <% else %>
-      <li><%= link_to 'ログイン', new_user_session_path  %></li>
-      <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-    <% end %>
-    </ul>
+        <li><%= link_to '無料で登録する', new_user_registration_path, class: "signupbtn" %></li>
+        <li><%= link_to 'ログイン', new_user_session_path %></li>
+      <% end %>
+      </ul>
+    </div>
   </header>
-
+  
+<% if user_signed_in? %>
+    <div style="display:block;height:100px"></div>
+<% else %>
+    <div style="display:block;height:130px"></div>
+<% end %>
+<p>aaaa</p>
 <%= yield %>
-
+<p style="height:1000px"></p>
   <footer>
     <p>NEW Slide</p>
   </footer>
