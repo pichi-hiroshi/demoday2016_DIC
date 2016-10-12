@@ -11,9 +11,17 @@
   email = Faker::Internet.email
   password = "password"
   userid = Random.new.rand(1..10000)
+  name = Faker::Internet.user_name
+  affiliation = Faker::Company.name
+  discription = Faker::Lorem.sentence
+  #avatar = Faker::Company.logo
   User.create!(email: email,
                password: password,
                password_confirmation: password,
-               uid: userid
+               uid: userid,
+               name: name,
+               affiliation: affiliation,
+               discription: discription,
+               #avatar: avatar
                )
 end

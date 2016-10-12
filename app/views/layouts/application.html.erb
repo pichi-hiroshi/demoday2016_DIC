@@ -35,12 +35,18 @@
       </ul>
     </div>
   </header>
-  
+<%
+=begin
+%>
 <% if user_signed_in? %>
     <div style="display:block;height:100px"></div>
 <% else %>
     <div style="display:block;height:130px"></div>
 <% end %>
+<%
+=end
+%>
+
 <p>aaaa</p>
 <%= yield %>
 <p style="height:1000px"></p>
