@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   end
   
   def show
+    @followed = current_user.followed_users
+    @follower = current_user.followers
   end
   
   private

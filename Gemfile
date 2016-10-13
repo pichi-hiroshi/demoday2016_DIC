@@ -48,6 +48,8 @@ end
 group :development do
   gem 'letter_opener_web'
   gem 'dotenv-rails'
+  gem 'better_errors'
+  gem 'pry-rails'
 end
 
 gem 'twitter-bootstrap-rails'
@@ -56,8 +58,8 @@ gem 'devise'
 
 gem 'therubyracer', platforms: :ruby
 gem 'rails_admin'
-
 gem 'cancan'
+gem 'rails_admin_import'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -66,3 +68,7 @@ gem 'omniauth-facebook'
 #image uploader
 gem 'carrierwave'
 gem 'rmagick'
+
+gem 'faker'
+
+gem 'jquery-turbolinks'

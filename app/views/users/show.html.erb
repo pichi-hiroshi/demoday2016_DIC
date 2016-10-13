@@ -3,3 +3,41 @@
 <p><%= @user.name %></p>
 <p><%= profile_img(@user) %></p>
 <p><%= @user.email %></p>
+
+
+<p>これを編集</p>
+
+
+
+
+
+<div>
+    <ul class="nav nav-tabs" role="tablist" id="usertab">
+        <li class="active" role="presentation">
+            <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">+ slide</a>
+        </li>
+        <li role="presentation">
+            <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">フォロー：<%= @followed.size %></a>
+        </li>
+        <li role="presentation">
+            <a aria-controls="tab_c" data-toggle="tab" href="#tab_c" role="tab">フォロワー：<%= @follower.size %></a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab_a" role="tabpanel">
+            <p>タブA</p>
+        </div>
+        <div class="tab-pane" id="tab_b" role="tabpanel">
+            <p>followed size:<%= @followed.size %></p>
+            <% @followed.each do |f| %>
+                <p>followed<%= f.name %></p>
+            <% end %>
+        </div>
+        <div class="tab-pane" id="tab_c" role="tabpanel">
+            <p>follower size:<%= @follower.size %></p>
+            <% @follower.each do |f| %>
+                <p><%= f.name %></p>
+            <% end %>
+        </div>
+    </div>
+</div>
