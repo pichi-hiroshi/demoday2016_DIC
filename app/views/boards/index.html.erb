@@ -5,7 +5,11 @@
   <%= link_to board_path(board) do %>
     <p>タイトル:<%= board.board_title %></p>
   <% end %>
-  <p>本文:<%= board.board_content %></p>
+  <p>本文:<%= board.board_posttext %></p>
 <% end %>
 
 <%= link_to "新規作成", new_board_path %>
+
+<p>title<%= @pagetitle %></p>
+<p>discription<%= @pagediscription %></p>
+<p>image<%= @pageimage %></p>

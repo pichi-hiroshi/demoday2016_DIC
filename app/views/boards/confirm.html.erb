@@ -1,0 +1,20 @@
+<h3>以下の内容で、送信する。</h3>
+
+<%= form_for(@board) do |f| %>
+  <!-- `f.hidden_field`を使用して、リクエストパラメータに値を設定できるようにしています。 -->
+  <%= f.hidden_field :board_url %>
+  <%= f.hidden_field :board_posttext %>
+
+  <!-- @blog.titleと@blog.contentとすることで、表示用の値を画面に出力しています。 -->
+  <p>タイトル:<%= @board.board_url %></p>
+  <p>本文:<%= @board.board_posttext %></p>
+  <%= f.submit "登録する" %>
+<% end %>
+
+<%= form_for(@board, url: new_board_path, method: 'get') do |f| %>
+  <%= f.hidden_field :board_url %>
+  <%= f.hidden_field :board_posttext %>
+  <%= f.submit '戻る' %>
+<% end %>
+
+<%= link_to '戻る', :back %>

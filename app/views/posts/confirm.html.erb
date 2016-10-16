@@ -3,6 +3,7 @@
 <%= form_for(@post) do |f| %>
   <%= f.hidden_field :title %>
   <%= f.hidden_field :message %>
+  
   <p>タイトル:<%= @post.title %></p>
   <p>本文:<%= @post.message %></p>
   <%= f.submit"登録する" %>

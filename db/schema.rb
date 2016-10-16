@@ -17,13 +17,15 @@ ActiveRecord::Schema.define(version: 20161005085610) do
   enable_extension "plpgsql"
 
   create_table "boards", force: :cascade do |t|
-    t.text     "board_url"
+    t.string   "board_url"
     t.string   "board_title"
-    t.text     "board_content"
+    t.string   "board_discription"
+    t.string   "board_image"
+    t.string   "board_posttext"
     t.integer  "user_id"
     t.integer  "dashboard_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "comments", force: :cascade do |t|

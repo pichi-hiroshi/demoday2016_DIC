@@ -21,9 +21,7 @@ class PostsController < ApplicationController
   end
   
   def create
-#    Post.create(posts_params)
-#    redirect_to posts_path, notice: "作成しました！" 
-    
+
     @post = Post.new(posts_params)
     @post.user_id = current_user.id
     @post.user_name = current_user.name
