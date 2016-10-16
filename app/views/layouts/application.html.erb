@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
   
@@ -24,13 +25,97 @@
       <a href="/" id="logo"><img src="<%= asset_path "newslide_logo2.PNG"%>" /></a>
       <ul>
       <% if user_signed_in? %>
-        <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
-        <li><%= link_to 'マイページ', edit_user_registration_path %></li>
+      
+        <li><%= link_to 'ユーザー一覧', users_path %></li>
+        <li><%= link_to 'boards', boards_path %></li>
+        <li><%= link_to 'posts', posts_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      
       <% else %>
-
-        <li><%= link_to '無料で登録する', new_user_registration_path, class: "signupbtn" %></li>
-        <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <li><button type="button" class="btn signupbtn" data-toggle="modal" data-target="#loginmodal">ログイン／無料で登録</button></li>
+          <div class="modal fade" id="loginmodal">
+            <div id="login-overlay" class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                      <h4 class="modal-title tocenter" id="myModalLabel">ログイン／無料で登録</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div class="row">
+                          <div class="col-xs-6">
+                            <div class="well">
+                              <p class="lead" style="text-align:left">ログイン</p>
+                              <form id="loginForm" method="POST" action="/login/" novalidate="novalidate">
+                                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                                  <%= devise_error_messages! %>
+                            
+                                  <div class="field form-group">
+                                    <label for="username" class="control-label toleft">Eメールアドレス</label>
+                                    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Eメールアドレス" %>
+                                  </div>
+                            
+                                  <div class="field form-group">
+                                    <label for="password" class="control-label toleft">パスワード</label>
+                                    <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "パスワード" %>
+                                  </div>
+                            
+                                  <% if devise_mapping.rememberable? %>
+                                    <div class="field toleft">
+                                      <%= f.check_box :remember_me %>
+                                      <%= f.label :内容を記憶させる %>
+                                    </div>
+                                  <% end %>
+                            
+                                  <div class="actions">
+                                    <%= f.submit "ログイン", class: "btn btn-success btn-block" %>
+                                    </div>
+                                <% end %>
+                                <div style="height:10px;display:block"></div>  
+                                <%= link_to 'Facebookでログイン', 'users/auth/facebook',class:'btn btn-info btn-block nomargin' %>
+                                <%= link_to 'Twitterでログイン', 'users/auth/twitter' ,class: 'btn btn-info btn-block nomargin' %>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="col-xs-6">
+                            <div style="padding:19px">
+                              <p class="lead" style="text-align:left">無料で会員登録</p>
+                              <%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
+                                <%= devise_error_messages! %>
+                          
+                                <div class="field form-group">
+                                  <label for="username" class="control-label toleft">Eメールアドレス</label>
+                                  <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "メールアドレス" %>
+                                </div>
+                          
+                                <div class="field form-group">
+                                  <label for="username" class="control-label toleft">名前</label>
+                                  <%= f.text_field :name, class: "form-control", placeholder: "名前" %>
+                                </div>
+                          
+                                <div class="field form-group">
+                                  <label for="password" class="control-label toleft">パスワード</label>
+                                  <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "パスワード" %>
+                                </div>
+                          
+                                <div class="field">
+                                  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "パスワード（確認）" %>
+                                </div>
+                          
+                                <div class="actions">
+                                  <div style="height:10px;display:block"></div>
+                                  <%= f.submit "無料で登録", class: "btn btn-success btn-block" %>
+                                </div>
+                              <% end %>
+                              <div style="height:10px;display:block"></div>
+                              <%= link_to 'Facebookで登録', 'users/auth/facebook',class:'btn btn-info btn-block nomargin' %>
+                              <%= link_to 'Twitterで登録', 'users/auth/twitter' ,class: 'btn btn-info btn-block nomargin' %>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
       <% end %>
       </ul>
     </div>
@@ -46,8 +131,6 @@
 <%
 =end
 %>
-
-<p>aaaa</p>
 <%= yield %>
 <p style="height:1000px"></p>
   <footer>

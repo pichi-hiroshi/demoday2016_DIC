@@ -4,6 +4,10 @@ class DashboardsController < ApplicationController
   def index
   end
   
+  def show
+  end
+  
+  
   private
     def check_login
       redirect_to entrance_index_path unless user_signed_in?

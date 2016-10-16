@@ -42,11 +42,25 @@
   background-color:#37a000;
   border-radius:3px;
   color:#fff;
+  height:45px;
 }
 .signupbtn:hover{
   background-color:#008329;
   text-decoration: none;
   color:#fff;
+}
+.toleft{
+  float:left;
+}
+.towardleft li{
+  float:none;
+  text-align:left;
+}
+.tocenter{
+  text-align:center;
+}
+.nomargin{
+  margin:0;
 }
 
 body{

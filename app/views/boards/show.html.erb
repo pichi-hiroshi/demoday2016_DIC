@@ -1,9 +1,21 @@
 <p>board#show</p>
 
+<p>Board情報</p>
+
+
+ <p>board_url:<%= @board.board_url %></p>
+ <p>board_title<%= @board.board_title %></p>
+ <p>board_content<%= @board.board_content %></p>
+
 <% @posts.each do |posts| %>
-    <p>ID:<%= posts.id %></p>
+    <p>post:<%= posts.id %></p>
 <% end %>
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+
+<p>コレ！</p><%= @comments %>
+
+
+<p style="height:500px"></p>
+
 <p>aaaaaa</p>
 <%= stylesheet_link_tag 'social_button' %>
 
@@ -12,8 +24,7 @@
       <li class="twitter" data-url="<%= request.url %>"><a href="https://twitter.com/share" class="twitter-share-button" data-via="pichi_hiroshi"><img src="<%= asset_path "twitter.PNG" %>" /></a></li>
     </ul>
     
-
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+<p style="height:500px"></p>
 
 
 <div id="page-top-btn" class="page-top-btn">

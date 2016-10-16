@@ -29,6 +29,9 @@ class BoardsController < ApplicationController
   
   def show
     @posts = @board.posts
+#    @comments = @posts.comments
+    @allboard = Board.all.includes(posts: :comments)
+    @thisboard = @allboard.find(params[:id])
   end
   
   
