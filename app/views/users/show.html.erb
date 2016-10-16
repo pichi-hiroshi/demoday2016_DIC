@@ -28,16 +28,42 @@
             <p>タブA</p>
         </div>
         <div class="tab-pane" id="tab_b" role="tabpanel">
-            <p>followed size:<%= @followed.size %></p>
-            <% @followed.each do |f| %>
-                <p>followed<%= f.name %></p>
-            <% end %>
+          <%# ユーザーがフォローしている人 %>
+            <div class="container">
+              <% @followed.each do |user| %>
+              <div class="container-child col-md-4 col-sm-4 col-xs-6 ">
+                <div id="usercard">
+                  <div class="row" id="profilecontents">
+                    
+                    <div id="profileimg"><%= profile_img(user) %></div>
+                    <p><%= user.name %></p>
+                    <p><%= user.affiliation %></p>
+                    <p><%= user.discription %></p>      
+                    
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
         </div>
+    
         <div class="tab-pane" id="tab_c" role="tabpanel">
-            <p>follower size:<%= @follower.size %></p>
-            <% @follower.each do |f| %>
-                <p><%= f.name %></p>
-            <% end %>
+          <div class="container">
+              <% @follower.each do |user| %>
+              <div class="container-child col-md-4 col-sm-4 col-xs-6 ">
+                <div id="usercard">
+                  <div class="row" id="profilecontents">
+                    
+                    <div id="profileimg"><%= profile_img(user) %></div>
+                    <p><%= user.name %></p>
+                    <p><%= user.affiliation %></p>
+                    <p><%= user.discription %></p>      
+                    
+                  </div>
+                </div>
+              </div>
+              <% end %>
+          </div>
         </div>
     </div>
 </div>

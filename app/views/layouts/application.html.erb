@@ -68,8 +68,9 @@
                             
                                   <div class="actions">
                                     <%= f.submit "ログイン", class: "btn btn-success btn-block" %>
-                                    </div>
-                                <% end %>
+                                  </div>
+                                  <% end %>
+                                <%= link_to 'パスワードを忘れた場合', 'users/password/new',style: 'text-align:center' %>
                                 <div style="height:10px;display:block"></div>  
                                 <%= link_to 'Facebookでログイン', 'users/auth/facebook',class:'btn btn-info btn-block nomargin' %>
                                 <%= link_to 'Twitterでログイン', 'users/auth/twitter' ,class: 'btn btn-info btn-block nomargin' %>
