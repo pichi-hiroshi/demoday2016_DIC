@@ -11,7 +11,7 @@
 <%
 =end
 %>
-    <img src="<%= asset_path 'no_image.png' %>" />
+    <img src="<%= @board.board_image %>" />
      
      <% if @board.board_title.empty? %>
        <p>タイトルが読み取れませんでした。編集ボタンからタイトルを入力してください。</p>
