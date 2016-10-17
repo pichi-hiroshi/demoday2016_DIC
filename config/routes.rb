@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
     
   resources :infos, only: [:index, :new, :create]
-  resources :boards, only: [:index, :new, :create,:edit,:update,:destroy,:show] do
+  resources :boards, only: [:index, :new, :create,:edit,:update,:destroy,:show, :createpost] do
     collection do
       post :confirm
     end

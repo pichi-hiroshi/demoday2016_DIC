@@ -12,6 +12,7 @@
           <h4><strong><%= post.title %></strong></h4>
         <% end %>
         <p><%= post.message %></p>
+        <p>board_id<%= post.board_id %></p>
         <%= link_to "編集", edit_post_path(post.id), class: 'btn btn-default btn-sm btn-success' %>
         <%= link_to "削除", post_path(post.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
       </div>

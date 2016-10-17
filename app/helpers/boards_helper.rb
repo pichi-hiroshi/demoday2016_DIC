@@ -6,4 +6,10 @@ module BoardsHelper
       board_path
     end
   end
+  
+  def createpost
+#    cc = params[:id]
+    link_to 'ポスト作成', new_post_path
+  end
+  
 end

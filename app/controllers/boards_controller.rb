@@ -66,10 +66,11 @@ class BoardsController < ApplicationController
   def show
     @posts = @board.posts
 #    @comments = @posts.comments
+
+#下の2つ　後で消す
     @allboard = Board.all.includes(posts: :comments)
     @thisboard = @allboard.find(params[:id])
   end
-  
   
   private
     def boards_params
