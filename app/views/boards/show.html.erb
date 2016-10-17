@@ -1,25 +1,20 @@
 <div class="container">
     
-<%
-=begin
-%>
-     <% if @board.board_image.empty? %>
+     <% if @board.board_image.nil? %>
        <img src="<%= asset_path 'no_image.png' %>" />
      <% else %>
        <img src="<%= @board.board_image %>" />
      <% end %>
-<%
-=end
-%>
+
     <img src="<%= @board.board_image %>" />
      
-     <% if @board.board_title.empty? %>
+     <% if @board.board_title.nil? %>
        <p>タイトルが読み取れませんでした。編集ボタンからタイトルを入力してください。</p>
      <% else %>
        <p><%= @board.board_title %></p>
      <% end %>
      
-     <% if @board.board_discription.empty? %>
+     <% if @board.board_discription.nil? %>
        <p>説明文が読み取れませんでした。編集ボタンから説明文を入力してください。</p>
      <% else %>
        <p><%= @board.board_discription %></p>
