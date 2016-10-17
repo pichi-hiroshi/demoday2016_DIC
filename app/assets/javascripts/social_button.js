@@ -1,3 +1,4 @@
+/*
 $(function(){
   $.each($(".js-socialActionArea").find("li"), function(index, target){
   getSocialCount(target);
@@ -13,3 +14,4 @@ function getSocialCount(target){
     $("<span class='top-social-count'>"+data.count+"</span>").appendTo($(target));
   });
 }
+*/
