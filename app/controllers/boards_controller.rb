@@ -1,13 +1,24 @@
 class BoardsController < ApplicationController
-  
+  before_action :check_login
   before_action :set_board, only: [:edit, :update, :destroy, :show]
   
   def index
     @boards = Board.all
-    
+  end
+  
+  def new
+    @board = Board.new
+  end
+  
+  def create
     require 'open-uri'
     
-    url = 'http://www.sankei.com/economy/news/161015/ecn1610150024-n1.html'
+    @ccc = Board.create(boards_params)
+    @idid = @ccc.id
+    @board = Board.find(@idid)
+    @urlurl = Board.find(@idid).board_url
+    
+    url = @urlurl
     
     charset = nil
     html = open(url) do |f|
@@ -16,37 +27,33 @@ class BoardsController < ApplicationController
     end
     
     doc = Nokogiri::HTML.parse(html, nil, charset)
-    
-    @node = doc.xpath('//li[@class="mdTopMTMList01Item"]').css('h3').inner_text
 
-    @pagetitle = doc.title.to_s
+    @board.board_title = doc.title.to_s
     
     if doc.css('//meta[property="og:description"]/@content').empty?
-      @pagediscription = doc.css('//meta[name$="escription"]/@content').to_s
+      @board.board_discription = doc.css('//meta[name$="escription"]/@content').to_s
     else
-      @pagediscription = doc.css('//meta[property="og:description"]/@content').to_s
+      @board.board_discription = doc.css('//meta[property="og:description"]/@content').to_s
     end
     
-    @pageimage = doc.css('//meta[property="og:image"]/@content').to_s
+    @board.board_image = doc.css('//meta[property="og:image"]/@content').to_s
     
+    @board.save
     
-  end
-  
-  def new
-    @board = Board.new
-  end
-  
-  def create
+    redirect_to board_path(@board.id)
+#    render :template => "user/show"
     
-    
-    Board.create(boards_params)
-    redirect_to boards_path
   end
   
   def edit
   end
   
   def update
+    if @board.update(boards_params)
+      redirect_to board_path(@board.id)
+    else
+      render action: 'edit'
+    end
   end
   
   def destroy
@@ -66,11 +73,14 @@ class BoardsController < ApplicationController
   
   private
     def boards_params
-      params.require(:board).permit(:board_url,:board_title,:board_content)
+      params.require(:board).permit(:board_url,:board_title,:board_content,:board_image,:board_discription)
     end
     
     def set_board
       @board = Board.find(params[:id])
     end
 
+    def check_login
+      redirect_to entrance_index_path unless user_signed_in?
+    end
 end

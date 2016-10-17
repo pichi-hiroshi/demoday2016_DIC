@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   
   resources :entrance, only: [:index]
   
-  root 'dashboards#index'
+  root 'boards#index'
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

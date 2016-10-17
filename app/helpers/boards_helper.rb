@@ -1,9 +1,9 @@
 module BoardsHelper
-  def choose_new_or_edit
+  def choose_new_or_edit_board
     if action_name == 'new' || action_name == 'confirm'
-      confirm_blogs_path
+      confirm_boards_path
     elsif action_name == 'edit'
-      blog_path
+      board_path
     end
   end
 end

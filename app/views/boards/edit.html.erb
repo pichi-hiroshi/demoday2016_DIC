@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+
+    <h2>編集する</h2>
+    
+<p id="notice"><%= notice %></p>
+
+
+<%= form_for(@board, url: choose_new_or_edit_board) do |f| %>
+  <%= f.label :board_title %>
+  <%= f.text_field :board_title %>
+  <br>
+  <%= f.label :board_discription %>
+  <%= f.text_field :board_discription %>
+  <br>
+  <%= f.label :board_image %>
+  <%= f.text_field :board_image %>
+  <br>
+  <%= f.submit '投稿' %>
+<% end %>
+
+<%= link_to '戻る', board_path(@board.id) %>
+  </div>
+</div>

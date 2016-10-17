@@ -1,15 +1,20 @@
-<h1>ニュース一覧</h1>
-
-<% @boards.each do |board| %>
-  <p>URL:<%= board.board_url %></p>
-  <%= link_to board_path(board) do %>
-    <p>タイトル:<%= board.board_title %></p>
+<div class="container">
+  <h1>ニュース一覧</h1>
+  <%= link_to "新規作成", new_board_path, class: 'btn btn-info' %>
+  <div style="height:50px;display:block"></div>
+  <Hr>
+  <% @boards.each do |board| %>
+    
+    <%= link_to board_path(board) do %>
+      <p><%= board.board_title %></p>
+    <% end %>
+    <img src="<%= board.board_image %>" />
+    <p>URL:<%= board.board_url %></p>
+    <p>title:<%= board.board_title %></p>
+    <p>discription:<%=board.board_discription %></p>
+    
+    <Hr>
   <% end %>
-  <p>本文:<%= board.board_posttext %></p>
-<% end %>
-
-<%= link_to "新規作成", new_board_path %>
-
-<p>title<%= @pagetitle %></p>
-<p>discription<%= @pagediscription %></p>
-<p>image<%= @pageimage %></p>
+  
+  <%= link_to "新規作成", new_board_path, class: 'btn btn-info' %>
+</div>

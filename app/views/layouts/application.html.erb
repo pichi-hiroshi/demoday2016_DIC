@@ -27,8 +27,8 @@
       <% if user_signed_in? %>
       
         <li><%= link_to 'ユーザー一覧', users_path %></li>
-        <li><%= link_to 'boards', boards_path %></li>
-        <li><%= link_to 'posts', posts_path %></li>
+        <li><%= link_to 'マイページ', user_path(current_user) %></li>
+        <li><%= link_to 'posts#index', posts_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       
       <% else %>

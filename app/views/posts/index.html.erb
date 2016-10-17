@@ -7,7 +7,7 @@
     <%= link_to "スライドを作成する", new_post_path, class: 'btn btn-default' %>
     <% @posts.each do |post| %>
       <div class="row">
-        # ブログのタイトルにlink_toでリンクを設定します。
+        <%# ブログのタイトルにlink_toでリンクを設定します。%>
         <%= link_to post_path(post) do %>
           <h4><strong><%= post.title %></strong></h4>
         <% end %>
@@ -15,6 +15,7 @@
         <%= link_to "編集", edit_post_path(post.id), class: 'btn btn-default btn-sm btn-success' %>
         <%= link_to "削除", post_path(post.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
       </div>
+    <Hr>
     <% end %>
   </div>
 </div>
