@@ -8,10 +8,14 @@ class PostsController < ApplicationController
   end
   
   def new
+ #   @postboardid = params[:board_id]
+
     if params[:back]
       @post = Post.new(posts_params)
     else
       @post = Post.new
+      @post.board_id = params[:board_id]
+      @post.save
     end
   end
   
@@ -21,17 +25,18 @@ class PostsController < ApplicationController
   end
   
   def create
-#    Post.create(posts_params)
-#    redirect_to posts_path, notice: "作成しました！" 
     
+
     @post = Post.new(posts_params)
     @post.user_id = current_user.id
     @post.user_name = current_user.name
     @post.provider = current_user.provider
     @post.image_url = current_user.image_url
     @post.avatar = current_user.avatar
+    
+
     if @post.save
-      redirect_to posts_path, notice: "作成しました！"
+      redirect_to board_path(@post.board_id), notice: "作成しました！"
     else
       render action: 'new'
     end
@@ -43,7 +48,7 @@ class PostsController < ApplicationController
   
   def update
     @post.update(posts_params)
-    redirect_to posts_path
+    redirect_to board_path(@post.board_id)
   end
   
   def destroy
@@ -58,7 +63,7 @@ class PostsController < ApplicationController
   
   private
     def posts_params
-      params.require(:post).permit(:title,:message)
+      params.require(:post).permit(:title,:message,:board_id)
     end
     
     def set_post

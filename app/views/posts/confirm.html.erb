@@ -3,13 +3,17 @@
 <%= form_for(@post) do |f| %>
   <%= f.hidden_field :title %>
   <%= f.hidden_field :message %>
+  <%= f.hidden_field :board_id %>
+  
   <p>タイトル:<%= @post.title %></p>
   <p>本文:<%= @post.message %></p>
+  <%= @post.board_id %>
   <%= f.submit"登録する" %>
 <% end %>
 
 <%= form_for(@post, url: new_post_path, method: 'get') do |f| %>
   <%= f.hidden_field :title %>
   <%= f.hidden_field :message %>
+  <%= f.hidden_field :board_id %>
   <%= f.submit "戻る", name: 'back' %>
 <% end %>

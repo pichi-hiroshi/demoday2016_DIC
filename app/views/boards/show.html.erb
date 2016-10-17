@@ -1,37 +1,59 @@
-<p>board#show</p>
-
-<p>Board情報</p>
-
-
- <p>board_url:<%= @board.board_url %></p>
- <p>board_title<%= @board.board_title %></p>
- <p>board_content<%= @board.board_content %></p>
-
-<% @posts.each do |posts| %>
-    <p>post:<%= posts.id %></p>
-<% end %>
-
-<p>コレ！</p><%= @comments %>
-
-
-<p style="height:500px"></p>
-
-<p>aaaaaa</p>
-<%= stylesheet_link_tag 'social_button' %>
-
-    <ul class="share-buttons js-socialActionArea">
-      <li class="facebook" data-url="<%= request.url %>"><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fjob-share.net%2F&t=JobShare-%E5%8F%8B%E9%81%94%E6%B1%82%E4%BA%BA%E5%BF%9C%E6%8F%B4%E3%82%B5%E3%82%A4%E3%83%88" target="_blank"><img src="<%= asset_path "facebook.PNG" %>" /></a></li>
-      <li class="twitter" data-url="<%= request.url %>"><a href="https://twitter.com/share" class="twitter-share-button" data-via="pichi_hiroshi"><img src="<%= asset_path "twitter.PNG" %>" /></a></li>
-    </ul>
+<div class="container">
     
-<p style="height:500px"></p>
+     <% if @board.board_image.nil? %>
+       <img src="<%= asset_path 'no_image.png' %>" />
+     <% else %>
+       <img src="<%= @board.board_image %>" />
+     <% end %>
+     
+     <% if @board.board_title.nil? %>
+       <p>タイトルが読み取れませんでした。編集ボタンからタイトルを入力してください。</p>
+     <% else %>
+       <p><%= @board.board_title %></p>
+     <% end %>
+     
+     <% if @board.board_discription.nil? %>
+       <p>説明文が読み取れませんでした。編集ボタンから説明文を入力してください。</p>
+     <% else %>
+       <p><%= @board.board_discription %></p>
+     <% end %>
+    
+    <Hr>
+    <% @posts.each do |posts| %>
+     <p>post id:<%= posts.id %></p>
+     <p>post title:<%= posts.title %></p>
+     <p>post message:<%= posts.message %></p>
+     <Hr>
+    <% end %>
+    
+    <p><%= @comments %></p>
+    
+    <%= link_to "編集", edit_board_path(@board), class: 'btn btn-success' %>
+    <%= link_to "スライドを作成する", new_post_path(board_id: @board.id ), class: 'btn btn-default' %>
+    <%= createpost %>
 
-
-<div id="page-top-btn" class="page-top-btn">
-    <p><a class="move-page-top" id="move-page-top">▲</a></p>
+    
+    
+    <p style="height:500px"></p>
+    
+    <p>SNSシェアは未完成</p>
+    <%= stylesheet_link_tag 'social_button' %>
+    
+        <ul class="share-buttons js-socialActionArea">
+          <li class="facebook" data-url="<%= request.url %>"><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fjob-share.net%2F&t=JobShare-%E5%8F%8B%E9%81%94%E6%B1%82%E4%BA%BA%E5%BF%9C%E6%8F%B4%E3%82%B5%E3%82%A4%E3%83%88" target="_blank"><img src="<%= asset_path "facebook.PNG" %>" /></a></li>
+          <li class="twitter" data-url="<%= request.url %>"><a href="https://twitter.com/share" class="twitter-share-button" data-via="pichi_hiroshi"><img src="<%= asset_path "twitter.PNG" %>" /></a></li>
+        </ul>
+        
+    <p style="height:500px"></p>
+    
+    
+    <div id="page-top-btn" class="page-top-btn">
+        <p><a class="move-page-top" id="move-page-top">▲</a></p>
+    </div>
+    
+    
+    
+    
+    
+    <%#= http://qiita.com/okappy/items/1e0687027bd9efea321f %>
 </div>
-
-
-
-
-<%#= http://qiita.com/okappy/items/1e0687027bd9efea321f %>

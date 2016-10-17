@@ -27,8 +27,8 @@
       <% if user_signed_in? %>
       
         <li><%= link_to 'ユーザー一覧', users_path %></li>
-        <li><%= link_to 'boards', boards_path %></li>
-        <li><%= link_to 'posts', posts_path %></li>
+        <li><%= link_to 'マイページ', user_path(current_user) %></li>
+        <li><%= link_to 'posts#index', posts_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       
       <% else %>
@@ -68,8 +68,9 @@
                             
                                   <div class="actions">
                                     <%= f.submit "ログイン", class: "btn btn-success btn-block" %>
-                                    </div>
-                                <% end %>
+                                  </div>
+                                  <% end %>
+                                <%= link_to 'パスワードを忘れた場合', 'users/password/new',style: 'text-align:center' %>
                                 <div style="height:10px;display:block"></div>  
                                 <%= link_to 'Facebookでログイン', 'users/auth/facebook',class:'btn btn-info btn-block nomargin' %>
                                 <%= link_to 'Twitterでログイン', 'users/auth/twitter' ,class: 'btn btn-info btn-block nomargin' %>
