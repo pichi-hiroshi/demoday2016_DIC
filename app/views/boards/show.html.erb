@@ -1,9 +1,17 @@
 <div class="container">
+    
+<%
+=begin
+%>
      <% if @board.board_image.empty? %>
        <img src="<%= asset_path 'no_image.png' %>" />
      <% else %>
        <img src="<%= @board.board_image %>" />
      <% end %>
+<%
+=end
+%>
+    <img src="<%= asset_path 'no_image.png' %>" />
      
      <% if @board.board_title.empty? %>
        <p>タイトルが読み取れませんでした。編集ボタンからタイトルを入力してください。</p>
@@ -30,7 +38,6 @@
     <%= link_to "編集", edit_board_path(@board), class: 'btn btn-success' %>
     <%= link_to "スライドを作成する", new_post_path(board_id: @board.id ), class: 'btn btn-default' %>
     <%= createpost %>
-    
 
     
     
