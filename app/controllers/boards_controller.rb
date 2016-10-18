@@ -66,7 +66,9 @@ class BoardsController < ApplicationController
   def show
     @post = @board.posts.build
     @posts = @board.posts
-
+    
+    @comment = @post.comments.build
+    @comments = @post.comments
     
 =begin
     @posts = @board.posts
