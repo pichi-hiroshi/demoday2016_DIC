@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   devise_for :users, controllers: {
@@ -28,6 +29,10 @@ Rails.application.routes.draw do
   end
     
   resources :relationships, only: [:create, :destroy]
+  
+  resources :conversations do
+    resources :messages
+  end
   
   resources :entrance, only: [:index]
   resources :terms, only: [:index]

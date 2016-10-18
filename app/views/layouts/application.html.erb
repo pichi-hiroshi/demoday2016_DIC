@@ -28,7 +28,7 @@
       
         <li><%= link_to 'ユーザー一覧', users_path %></li>
         <li><%= link_to 'マイページ', user_path(current_user) %></li>
-        <li>削除<%#= link_to 'posts#index', posts_path %></li>
+        <li><%= link_to "メッセージ", conversations_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       
       <% else %>
