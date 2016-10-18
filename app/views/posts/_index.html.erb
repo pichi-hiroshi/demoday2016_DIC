@@ -7,14 +7,11 @@
           <p class="left"><%= post.user.name %>さんがポストしました。</p>
            <p class="left"><%= post.title %></p>         
           <p class="left"><%= post.message %></p>
+          <p class="left"><img src="<%= post.avatar %>" /></p>
           <% if current_user.id == post.user.id %>
             <p class="right">
                 <p>編集</p>
                 <p>削除</p>
-                
-
-                
-                
             </p>
             <Hr>
           <% end %>

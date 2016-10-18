@@ -74,7 +74,7 @@ class PostsController < ApplicationController
     end
 =end
 
-  end
+  end #create
   
   
   def edit
@@ -97,7 +97,7 @@ class PostsController < ApplicationController
   
   private
     def post_params
-      params.require(:post).permit(:title,:message,:board_id)
+      params.require(:post).permit(:title,:message,:board_id,:avatar)
     end
     
     def set_post

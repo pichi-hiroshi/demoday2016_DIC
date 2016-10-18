@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+    mount_uploader :avatar, AvatarUploader
 #    validates :title, presence: true
 #    validates :message, presence: true
     
