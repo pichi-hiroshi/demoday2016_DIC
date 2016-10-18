@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-
-
   
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -32,6 +28,8 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   
   resources :entrance, only: [:index]
+  resources :terms, only: [:index]
+  resources :privacy, only: [:index]
   
   root 'boards#index'
   

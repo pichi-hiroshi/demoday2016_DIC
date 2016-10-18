@@ -1,0 +1,20 @@
+// Place all the styles related to the terms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.termframe{
+    background:#FFF;
+    border: 1px rgb(232, 236, 235) solid;
+    box-shadow: rgba(0,0,0,0.1) 0px 1px 1px 0px;
+    margin:30px 0;
+    padding:50px 80px;
+}
+.termframe h2{
+    margin-top:50px;
+    text-align:left;
+    font-size:20px;
+    font-weight:bold;
+}
+.termframe p{
+    text-align:left;
+}
