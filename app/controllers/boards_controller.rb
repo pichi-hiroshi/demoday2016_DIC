@@ -70,6 +70,8 @@ class BoardsController < ApplicationController
     @comment = @post.comments.build
     @comments = @post.comments
     
+    Notification.find(params[:notification_id]).update(read: true) if params[:notification_id]
+    
 =begin
     @posts = @board.posts
 #    @comments = @posts.comments

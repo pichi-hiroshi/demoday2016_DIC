@@ -72,3 +72,5 @@ gem 'rails_12factor', group: :production
 gem 'faker'
 
 gem 'jquery-turbolinks'
+
+gem 'pusher'

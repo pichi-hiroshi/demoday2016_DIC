@@ -27,16 +27,36 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     @board = @post.board
+#    @notification = @post.notifications.build(user_id: @board.user.id )
     
     respond_to do |format|
       if @post.save
-        format.html { redirect_to board_path(@board) }
-        format.json {render :show, status: :created, location: @post }
+#        unless @post.board.user_id == current_user.id
+          format.html { redirect_to board_path(@board) }
+          format.json {render :show, status: :created, location: @post }
+          
+=begin
+          Pusher.trigger("user_#{@post.board.user_id}_channel", 'post_created', {
+            message: 'あなたの作成した記事にslideが付きました'
+            })
+          end
+          
+          Pusher.trigger("user_#{@post.board.user_id}_channel", 'notification_created', {
+            uncreate_count: Notification.where(user_id: @post.board.user.id).count
+          })
+=end
+            
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  
+    # 通知機能に使うもの
+    
+
+      
+  
   
 =begin
     @post = Post.new(post_params)
