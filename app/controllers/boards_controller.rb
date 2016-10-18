@@ -64,12 +64,18 @@ class BoardsController < ApplicationController
   end
   
   def show
+    @post = @board.posts.build
+    @posts = @board.posts
+
+    
+=begin
     @posts = @board.posts
 #    @comments = @posts.comments
 
 #下の2つ　後で消す
     @allboard = Board.all.includes(posts: :comments)
     @thisboard = @allboard.find(params[:id])
+=end
   end
   
   private

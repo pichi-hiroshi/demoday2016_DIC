@@ -29,9 +29,25 @@
     <p><%= @comments %></p>
     
     <%= link_to "編集", edit_board_path(@board), class: 'btn btn-success' %>
-    <%= link_to "スライドを作成する", new_post_path(board_id: @board.id ), class: 'btn btn-default' %>
+    <%#= link_to "スライドを作成する", new_post_path(board_id: @board.id ), class: 'btn btn-default' %>
     <%= createpost %>
-
+    
+     <p style="height:100px"></p>
+     <p>ここから</p>
+     <p>コメント一覧</p>
+     
+    <div id="posts_area">
+      <%= render partial: 'posts/index', locals: { posts: @posts, board: @board } %>
+    </div>
+    <%= render partial: 'posts/form', locals: { post: @post, board: @board } %>
+    
+    <% if current_user.id == @board.user_id %>
+      <p>編集</p>
+    <% end %>
+    <p>戻る</p>
+  
+    
+    
     
     
     <p style="height:500px"></p>

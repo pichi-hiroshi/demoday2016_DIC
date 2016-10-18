@@ -1,24 +1,12 @@
-<%= form_for(@post, url: choose_new_or_edit) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @post.errors.count %>件のエラーがあります。</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <br>
-  <%= f.label :message %>
-  <%= f.text_field :message %>
-  <br>
-  <%= f.label :board_id %>
-  <%= f.text_field :board_id %>
-  <br>
-  <%= f.submit %>
+<p>posts/_form.html.erb</p>
+<%= form_for([board,post], remote: true) do |f| %>
+<%#= form_for([board,post]) do |f| %>
+  <%= f.hidden_field :board_id %>
+  <div class="field">
+      <%= f.text_field :title, placeholder: "タイトル", class: "form-control" %>
+      <%= f.text_field :message, placeholder: "本文", class: "form-control" %>
+  </div>
+  <div class="actions">
+      <%= f.submit %>
+  </div>
 <% end %>
