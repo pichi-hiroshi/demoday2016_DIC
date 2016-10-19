@@ -12,23 +12,24 @@ class BoardsController < ApplicationController
   
   def create
     require 'open-uri'
+    require 'nokogiri'
     
     @ccc = Board.create(boards_params)
     @idid = @ccc.id
     @board = Board.find(@idid)
     @urlurl = Board.find(@idid).board_url
     
-    url = @urlurl
-    
-    charset = nil
-    html = open(url) do |f|
-      charset = f.charset
-      f.read
-    end
-    
-    doc = Nokogiri::HTML.parse(html, nil, charset)
+    uri = @urlurl
 
-    @board.board_title = doc.title.to_s
+    page = URI.parse(uri).read
+    charset = page.charset
+    if charset == "iso-8859-1"
+      charset = page.scan(/charset="?([^\s"]*)/i).first.join
+    end
+
+    doc = Nokogiri::HTML.parse(page, uri, charset)
+
+    @board.board_title = doc.title.to_s.encode("UTF-8")
     
     if doc.css('//meta[property="og:description"]/@content').empty?
       @board.board_discription = doc.css('//meta[name$="escription"]/@content').to_s
