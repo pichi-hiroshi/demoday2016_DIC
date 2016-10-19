@@ -13,6 +13,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :name
       t.belongs_to :user
       t.belongs_to :board
+      t.integer :likes_count
 
       t.timestamps null: false
     end

@@ -48,6 +48,9 @@
       <%= render partial: 'posts/index', locals: { posts: @posts, board: @board } %>
     </div>
     <%= render partial: 'posts/form', locals: { post: @post, board: @board } %>
+    <p>partial posts/like</p>
+    <%#= render partial: 'posts/like', locals: { post: @post, board: @board } %>
+ 
     
     <% if current_user.id == @board.user_id %>
       <p>編集</p>

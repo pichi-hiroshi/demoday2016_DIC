@@ -1,0 +1,27 @@
+<% if user_signed_in? %>
+  <% if post.like_user(current_user.id) %>
+    <%#= button_to board_post_like_path(like, post_id: @post.id, board_id: @board.board_id), method: :delete, id: "like-button", remote: true do %>
+      <%#= image_tag("icon_red_heart.gif") %>
+      <img src="<%= asset_path "icon_red_heart.gif"%>" />
+      <span>
+        <%= post.likes_count %>
+      </span>
+    <%# end %>
+  <% else %>
+    <%= button_to board_post_likes_path(post), id: "like-button", remote: true do %>
+      <%#= image_tag("icon_heart.gif") %>
+      <img src="<%= asset_path "icon_heart.gif" %>" />
+      <span>
+        <%= post.likes_count %>
+      </span>
+    <% end %>
+  <% end %>
+<% else %>
+  <%#= image_tag("icon_heart.gif") %>
+  <img src="<%= asset_path "icon_heart.gif"%>" />
+    <span>
+      <%= post.like_count %>
+    </span>
+<% end %>
+
+<%# http://qiita.com/YuitoSato/items/94913d6a349a530b2ea2 %>

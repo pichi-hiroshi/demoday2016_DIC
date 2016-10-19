@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :infos, only: [:index, :new, :create]
   resources :boards, only: [:index, :new, :create,:edit,:update,:destroy,:show, :createpost] do
     resources :posts do
+      resources :likes, only: [:create, :destroyrai]
+      
       resources :comments
       
       collection do
