@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
 
+  get 'notifications/index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-
-
   
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -14,16 +13,20 @@ Rails.application.routes.draw do
 
   
   resources :users, only: [:index, :show]
-  resources :posts do
-    resources :comments
-    
-    collection do
-      post :confirm #ここのpostはコントローラー名にかかわらず一緒"
-    end
-  end
+  
     
   resources :infos, only: [:index, :new, :create]
   resources :boards, only: [:index, :new, :create,:edit,:update,:destroy,:show, :createpost] do
+    resources :posts do
+      resources :likes, only: [:create, :destroyrai]
+      
+      resources :comments
+      
+      collection do
+        post :confirm #ここのpostはコントローラー名にかかわらず一緒"
+      end
+    end
+    
     collection do
       post :confirm
     end
@@ -31,7 +34,13 @@ Rails.application.routes.draw do
     
   resources :relationships, only: [:create, :destroy]
   
+  resources :conversations do
+    resources :messages
+  end
+  
   resources :entrance, only: [:index]
+  resources :terms, only: [:index]
+  resources :privacy, only: [:index]
   
   root 'boards#index'
   

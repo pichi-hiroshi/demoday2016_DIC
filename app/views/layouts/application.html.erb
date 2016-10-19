@@ -7,6 +7,23 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
+  <!-- <script src="https://js.pusher.com/3.0/pusher.min.js"></script> -->
+  <% if user_signed_in? %>
+    <script>
+      var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',{
+        encrypted: true
+      });
+
+      var channel = pusher.subscribe("user_<%= current_user.id %>_channel");
+      channel.bind('comment_created', function(data) {
+        alert(data.message);
+      });
+      channel.bind('notification_created', function(data) {
+        $('#unread_count').html(data.unread_count);
+      });
+    </script>
+  <% end %>
 </head>
 <body>
   
@@ -25,12 +42,13 @@
       <a href="/" id="logo"><img src="<%= asset_path "newslide_logo2.PNG"%>" /></a>
       <ul>
       <% if user_signed_in? %>
-      
         <li><%= link_to 'ユーザー一覧', users_path %></li>
         <li><%= link_to 'マイページ', user_path(current_user) %></li>
-        <li><%= link_to 'posts#index', posts_path %></li>
+        <li><%= link_to "メッセージ", conversations_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-      
+        <%= link_to  notifications_index_path, class: "navbar-brand" do %>
+        <i class="fa fa-bell fa-1x"><span id="unread_count"><%= @notifications_count %></span></i>
+        <% end %>
       <% else %>
         <li><button type="button" class="btn signupbtn" data-toggle="modal" data-target="#loginmodal">ログイン／無料で登録</button></li>
           <div class="modal fade" id="loginmodal">
@@ -133,7 +151,7 @@
 =end
 %>
 <%= yield %>
-<p style="height:1000px"></p>
+<p style="height:100px"></p>
   <footer>
     <p>NEW Slide</p>
   </footer>

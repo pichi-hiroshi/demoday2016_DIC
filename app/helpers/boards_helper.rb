@@ -9,7 +9,7 @@ module BoardsHelper
   
   def createpost
 #    cc = params[:id]
-    link_to 'ポスト作成', new_post_path
+#    link_to 'ポスト作成', new_post_path
   end
   
 end

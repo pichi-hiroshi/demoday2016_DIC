@@ -70,11 +70,9 @@ body{
 
 footer {
   width: 100%;
-  background-color:#7D7D7D;
-  padding: 20px 0 10px 0;
-  color: #fff;
+  background-color:#f6f6f6;
+  color: #333;
   margin: auto;
-  padding-bottom: 10px;
   font-size: 12px;
   position: absolute;
   bottom: 0;
