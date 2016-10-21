@@ -31,7 +31,7 @@
 }
 #logo{
   float:left;
-  margin:25px 0;
+  margin:15px 0;
 }
 #logo img{
   width:200px;
@@ -39,10 +39,11 @@
   vertical-align: middle
 }
 .signupbtn{
-  background-color:#37a000;
-  border-radius:3px;
-  color:#fff;
-  height:45px;
+  background-color: #37a000;
+  border-radius: 3px;
+  color: #fff;
+  height: 35px;
+  margin-top: 5px;
 }
 .signupbtn:hover{
   background-color:#008329;
@@ -62,6 +63,47 @@
 .nomargin{
   margin:0;
 }
+
+/*サイドバー用*/
+#sidebar{
+  float: left;
+  margin-top: -100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 100px;
+  z-index: 30;
+  padding-bottom: 10000px;
+  margin-bottom: 1000px;
+  background: #42454C;
+  width:100px;
+  display: block;
+}
+
+.gnav-primary{
+  border-bottom: 1px solid #303237;
+  padding-top: 79px;
+}
+
+.gnav-primary li{
+  border-bottom: 1px solid #4a4f57;
+  border-top:1px solid #303237;
+  text-align: center;
+}
+
+.gnav-primary li a{
+  color: #c6c7c9;
+  display: block;
+  height:70px;
+  letter-spacing: 0;
+  text-decoration: none;
+  width: 100%;
+}
+
+
+
+
+
 
 body{
   font-family:"ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "Meiryo","メイリオ",  sans-serif;

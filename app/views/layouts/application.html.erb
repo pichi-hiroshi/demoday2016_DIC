@@ -28,9 +28,9 @@
 <body>
   
 <% if user_signed_in? %>
-  <header style="height:100px">
+  <header style="height:80px;position:fixed">
 <% else %>
-  <header style="height:130px">
+  <header style="height:110px">
     <div class="beforeloginbar">
       <div class="container">
         <p><strong>Newslide</strong>｜ニュースにグラフ付きのコメントをくっつけてシェアしよう</p>
@@ -150,6 +150,18 @@
 <%
 =end
 %>
+
+<% if user_signed_in? %>
+  <div id="sidebar">
+    <ul class="gnav-primary">
+      <li><a href="/">あ</a></li>
+      <li><a href="/">い</a></li>
+    </ul>
+  </div>
+<% end %>
+
+
+
 <%= yield %>
 <p style="height:100px"></p>
   <footer>
