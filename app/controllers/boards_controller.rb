@@ -32,9 +32,9 @@ class BoardsController < ApplicationController
     @board.board_title = doc.title.to_s.encode("UTF-8")
     
     if doc.css('//meta[property="og:description"]/@content').empty?
-      @board.board_discription = doc.css('//meta[name$="escription"]/@content').to_s
+      @board.board_discription = doc.css('//meta[name$="escription"]/@content').to_s.truncate(100)
     else
-      @board.board_discription = doc.css('//meta[property="og:description"]/@content').to_s
+      @board.board_discription = doc.css('//meta[property="og:description"]/@content').to_s.truncate(100)
     end
     
     @board.board_image = doc.css('//meta[property="og:image"]/@content').to_s

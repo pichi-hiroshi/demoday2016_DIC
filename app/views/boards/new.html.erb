@@ -1,8 +1,12 @@
-<%= form_for(@board) do |f| %>
-  <%= f.label :board_url %>
-  <%= f.text_field :board_url %>
-  <br>
-  <%= f.submit %>
-<% end %>
-
-<%= link_to "一覧にもどる", boards_path %>
+<div id="main-section">
+  <div id="main-contents-sub">
+    <%= form_for(@board) do |f| %>
+      <%= f.label :board_url %>
+      <%= f.text_field :board_url %>
+      <br>
+      <%= f.submit %>
+    <% end %>
+    
+    <%= link_to "一覧にもどる", boards_path %>
+  </div>
+</div>

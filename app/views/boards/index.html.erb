@@ -1,20 +1,58 @@
-<div class="container">
-  <h1>ニュース一覧</h1>
-  <%= link_to "新規作成", new_board_path, class: 'btn btn-info' %>
-  <div style="height:50px;display:block"></div>
+<div id="sidebar-secondary">
+  <p><i class="fa fa-search fa-lg" style="color:#009DCF"></i> カテゴリーで探す</p>
   <Hr>
-  <% @boards.each do |board| %>
-    
-    <%= link_to board_path(board) do %>
-      <p><%= board.board_title %></p>
-    <% end %>
-    <img src="<%= board.board_image %>" />
-    <p>URL:<%= board.board_url %></p>
-    <p>title:<%= board.board_title %></p>
-    <p>discription:<%=board.board_discription %></p>
-    
-    <Hr>
-  <% end %>
-  
-  <%= link_to "新規作成", new_board_path, class: 'btn btn-info' %>
+  <ul>
+    <li><a href="#">すべて</a></li>
+    <li><a href="#">テクノロジー</a></li>
+    <li><a href="#">ビジネス</a></li>
+    <li><a href="#">政治・経済</a></li>
+    <li><a href="#">金融・マーケット</a></li>
+    <li><a href="#">キャリア･教育</a></li>
+    <li><a href="#">社会・スポーツ</a></li>
+  </ul>
+
+</div>
+
+
+<div id="main-section">
+  <div id="main-contents">
+      <div class="container">
+        
+        
+        <h1>ニュース一覧</h1>
+        <%= link_to "新規作成", new_board_path, class: 'btn btn-info' %>
+        <div style="height:50px;display:block"></div>
+        <Hr>
+        <% @boards.each do |board| %>
+          
+          <div class="boardpanelbig col-sm-4">
+            <%= link_to board_path(board) do %>
+              <div class="boardpanelsmall">
+                <div class="boardimg">
+                  <img src="<%= board.board_image %>" />
+                </div>
+                
+                <p class="boardtitle"><%= board.board_title %></p>
+                
+                <p class="boarddiscription"><%=board.board_discription %></p>
+                
+                <div class="boardurl">
+                 <Hr style="margin:0">
+                 <p>参照元:<br /><span class="urlurl"><%= board.board_url %></span></p>
+                </div>
+                
+              </div>
+            <% end %>
+          </div>
+          
+        <% end %>
+        
+        <%= link_to new_board_path do %>
+          <div class="boardplus">
+            <p><i class="fa fa-plus" aria-hidden="true"></i> 記事を追加する</p>
+          </div>
+        <% end %>
+      </div>
+
+  </div>
 </div>

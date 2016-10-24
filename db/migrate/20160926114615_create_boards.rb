@@ -6,6 +6,7 @@ class CreateBoards < ActiveRecord::Migration
       t.string :board_discription
       t.string :board_image
       t.string :board_posttext
+      t.string :category
       t.belongs_to :user
       t.belongs_to :dashboard
 

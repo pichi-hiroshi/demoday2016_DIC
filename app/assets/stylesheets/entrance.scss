@@ -93,6 +93,19 @@ body {
   padding-top: 10px;
 }
 .field img{
-    border-radius:50%;
+    border-radius: .2em;
 }
 
+#logo{
+  background: image_url("newslide_logo.PNG") no-repeat;
+}
+#logo a{
+  background: image_url("newslide_logo.PNG");
+}
+#logo a:hover{
+  background: image_url("newslide_logo_hover.PNG");
+}
+
+footer ul li{
+    background-image: image_url("bullet_arrow.png");
+}
