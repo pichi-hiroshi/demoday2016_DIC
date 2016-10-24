@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20161019023132) do
     t.string   "board_discription"
     t.string   "board_image"
     t.string   "board_posttext"
+    t.string   "category"
     t.integer  "user_id"
     t.integer  "dashboard_id"
     t.datetime "created_at",        null: false

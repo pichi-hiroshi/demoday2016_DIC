@@ -28,26 +28,49 @@
 <body>
   
 <% if user_signed_in? %>
-  <header style="height:100px">
+  <header style="height:80px;position:fixed">
 <% else %>
-  <header style="height:130px">
+  <header style="height:110px">
     <div class="beforeloginbar">
       <div class="container">
         <p><strong>Newslide</strong>｜ニュースにグラフ付きのコメントをくっつけてシェアしよう</p>
       </div>
     </div>
 <% end %>
-  
+    <div id="logo">
+      <a href="/"></a>
+    </div>
     <div class="container">
-      <a href="/" id="logo"><img src="<%= asset_path "newslide_logo2.PNG"%>" /></a>
+      
       <ul>
       <% if user_signed_in? %>
         <li><%= link_to 'ユーザー一覧', users_path %></li>
-        <li><%= link_to 'マイページ', user_path(current_user) %></li>
-        <li><%= link_to "メッセージ", conversations_path %></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-        <%= link_to  notifications_index_path, class: "navbar-brand" do %>
-        <i class="fa fa-bell fa-1x"><span id="unread_count"><%= @notifications_count %></span></i>
+        <li><a href="/boards/new"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
+<!-- 余裕があったら背景色を変える機能を追加
+         <li><i class="fa fa-cog" aria-hidden="true"></i></li>
+-->
+        <li class="dropdown wrap">
+          <a href="#" class="dropdown-toggle"  id="usericon" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+            <span>user popup</span>
+          </a>
+          
+          <ul class="dropdown-menu userdropdown">
+            <div>
+              <%= profile_img(current_user) %>
+              <%= current_user.name %>
+              <%= current_user.email %>
+            </div>
+            <Hr>
+            <li><%= link_to 'ユーザー情報の編集', edit_user_registration_path(current_user) %></li>
+            <li><%= link_to 'マイページ', user_path(current_user) %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          </ul>
+          
+        </li>
+        
+        <li><%= link_to  notifications_index_path, class: "navbar-brand" do %><i class="fa fa-bell fa-1x"><span id="unread_count"><%= @notifications_count %></span></i></li>
         <% end %>
       <% else %>
         <li><button type="button" class="btn signupbtn" data-toggle="modal" data-target="#loginmodal">ログイン／無料で登録</button></li>
@@ -150,10 +173,28 @@
 <%
 =end
 %>
+
+<% if user_signed_in? %>
+  <div id="sidebar">
+    <ul class="gnav-primary">
+      <li><a href="/"><i class="fa fa-home" id="sidebar-icon"></i><br>記事一覧</a></li>
+      <li><a href="/users"><i class="fa fa-users" id="sidebar-icon"></i><br>Userを探す</a></li>
+      <li><a href="/conversations"><i class="fa fa-envelope-o" id="sidebar-icon"></i><br>メッセージ</a></li>
+    </ul>
+  </div>
+  <div style="display:block;height:80px"></div>
+<% end %>
+
+
+
 <%= yield %>
 <p style="height:100px"></p>
   <footer>
-    <p>NEW Slide</p>
+    <ul class="footer-links">
+      <li><a href="/terms">利用規約</a></li>
+      <li><a href="/privacy">プライバシーポリシー</a></li>
+    </ul>
+    <p><small>Copyright © Hiroshi Takahashi, Inc. All Rights Reserved.</small></p>
   </footer>
 
 </body>
