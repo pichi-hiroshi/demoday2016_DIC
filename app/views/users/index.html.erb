@@ -1,7 +1,7 @@
 <div id="main-section">
   <div id="main-contents-sub">
     <div class="container">
-      <h2>ユーザー</h2>
+      <h2 class="contentstitle">ユーザー一覧</h2>
       <% @users.each do |user| %>
           <div class="container-child col-md-4 col-sm-4 col-xs-6 ">
             <div id="usercard">
@@ -22,7 +22,7 @@
                     <p><%= user.discription %></p>
               </div>
               
-              <%= render 'follow_form', user: user %>
+              
             </div>
           </div>
       <% end %>

@@ -1,30 +1,49 @@
+<div id="sidebar-secondary">
+  <p><i class="fa fa-search fa-lg" style="color:#009DCF"></i> カテゴリーで探す</p>
+  <Hr>
+  <ul>
+    <li><a href="/">すべて</a></li>
+    <li><%= link_to 'テクノロジー',:controller => 'boards', :action => 'index', :category =>'technology' %></li>
+    <li><%= link_to 'ビジネス',:controller => 'boards', :action => 'index', :category =>'business' %></li>
+    <li><%= link_to '政治・経済',:controller => 'boards', :action => 'index', :category =>'economic' %></li>
+    <li><%= link_to '金融・マーケット',:controller => 'boards', :action => 'index', :category =>'market' %></li>
+    <li><%= link_to 'キャリア･教育',:controller => 'boards', :action => 'index', :category =>'education' %></li>
+    <li><%= link_to '社会・スポーツ',:controller => 'boards', :action => 'index', :category =>'sports' %></li>
+  </ul>
+</div>
+
 <div id="main-section">
-  <div id="main-contents-sub">
+  <div id="main-contents">
     <div class="container">
         <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 showboard">
-            <% @comment %>
-            <% @comments.each do |f|  %>
-                <p><%= f.id %></p>
-            <% end %>
-            
-             <% if @board.board_image.nil? %>
-               <img src="<%= asset_path 'no_image.png' %>" />
-             <% else %>
-               <img src="<%= @board.board_image %>" />
-             <% end %>
-             
-             <% if @board.board_title.nil? %>
-               <p>タイトルが読み取れませんでした。編集ボタンからタイトルを入力してください。</p>
-             <% else %>
-               <p><%= @board.board_title %></p>
-             <% end %>
-             
-             <% if @board.board_discription.nil? %>
-               <p>説明文が読み取れませんでした。編集ボタンから説明文を入力してください。</p>
-             <% else %>
-               <p><%= @board.board_discription %></p>
-             <% end %>
-            <Hr>
+            <div class="boardpanelsmall showboardpanel" style="position:relative">
+                
+                 <div class="boardshowimg">
+                   <% if @board.board_image.blank? %>
+                     <img src="<%= asset_path 'no_image.png' %>" />
+                   <% else %>
+                     <img src="<%= @board.board_image %>" />
+                   <% end %>
+                 </div>
+                 <Hr style="margin:0">
+                     
+                 <% if @board.board_title.blank? %>
+                   <p class="boardtitle">タイトルが読み取れませんでした。編集ボタンからタイトルを入力してください。</p>
+                 <% else %>
+                   <p class="boardtitle"><%= @board.board_title %></p>
+                 <% end %>
+                 
+                 
+                 <% if @board.board_discription.blank? %>
+                   <p class="boarddiscription">説明文が読み取れませんでした。編集ボタンから説明文を入力してください。</p>
+                 <% else %>
+                   <p class="boarddiscription"><%= @board.board_discription %></p>
+                 <% end %>
+                
+                <p class="urlurl boardshowurl"> 参照元:<br /><a href="<%= @board.board_url %>"><%= @board.board_url %></a></p>
+                 
+            </div>
+
         
 <%
 =begin
@@ -43,12 +62,20 @@
 <%
 =end
 %>
-             <p>ここから</p>
-             <p>コメント一覧</p>
+
              
             <div id="posts_area">
               <%= render partial: 'posts/index', locals: { posts: @posts, board: @board } %>
             </div>
+            
+            
+            <% @posts.each do |selfpost| %>
+              <p>コレ<%= selfpost.id %></p>
+              <%= render partial: 'posts/show', locals: {post: selfpost, board: @board } %>
+              <%#= render partial: 'comments/form', locals: { comment: @comment, post: selfpost, board: @board} %>
+            
+            <% end %>
+            
             <%= render partial: 'posts/form', locals: { post: @post, board: @board } %>
             <p>partial posts/like</p>
             <%#= render partial: 'posts/like', locals: { post: @post, board: @board } %>
@@ -76,15 +103,27 @@
             <p style="height:500px"></p>
             
             
-            <div id="page-top-btn" class="page-top-btn">
-                <p><a class="move-page-top" id="move-page-top">▲</a></p>
-            </div>
+
+
             
             
             
             
             
             <%#= http://qiita.com/okappy/items/1e0687027bd9efea321f %>
+        <div class="snnbox">
+            <i class="fa fa-heart-o fa-3x" aria-hidden="true"></i>
+            <i class="fa fa-heart fa-3x" aria-hidden="true"></i>
+            <i class="fa fa-twitter fa-3x" aria-hidden="true"></i>
+            <i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
+        </div>
+        
+        <%= link_to new_board_path do %>
+          <div class="boardplus">
+            <p><i class="fa fa-plus" aria-hidden="true"></i> 記事を追加する</p>
+          </div>
+        <% end %>
+            
           </div>
         </div>
     </div>

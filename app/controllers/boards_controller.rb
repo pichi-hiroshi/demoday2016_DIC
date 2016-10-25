@@ -3,7 +3,13 @@ class BoardsController < ApplicationController
   before_action :set_board, only: [:edit, :update, :destroy, :show]
   
   def index
-    @boards = Board.all
+    
+    if params[:category].present?
+      @boards = Board.where(category: params[:category])
+    else
+      @boards = Board.all
+    end
+      
   end
   
   def new
@@ -85,7 +91,7 @@ class BoardsController < ApplicationController
   
   private
     def boards_params
-      params.require(:board).permit(:board_url,:board_title,:board_content,:board_image,:board_discription)
+      params.require(:board).permit(:board_url,:board_title,:board_content,:board_image,:board_discription,:category)
     end
     
     def set_board

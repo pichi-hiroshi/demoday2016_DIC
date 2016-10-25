@@ -191,6 +191,8 @@ html{
   text-align:left;
 }
 
+
+
 #sidebar-secondary ul li a:hover{
   color: #fff;
   background-color: #00B0DA;
@@ -261,5 +263,47 @@ footer p{
   bottom: 12px;
 }
 
+.list-container{
+  border: 1px solid #c6c7c9;
+  border-radius: 5px;
+  margin-bottom:30px;
+  margin-top:40px;
+  background-color: #fff;
+}
+.list-heading{
+  border-bottom: 1px solid #c6c7c9;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 1em 0 1em 1em;
+}
+.list-box{
+  border: none;
+}
+.list li{
+  padding: 10px 30px 10px 15px;
+  border-bottom: 1px solid #ececec;
+  cursor: pointer;
+  list-style: none;
+}
 
+.messagetop{
+  margin-left: 15px;
+  text-align: left;
+}
+.messageuser{
+  margin: 0;
+  padding: 0;
+}
 
+.messagefield{
+  margin-bottom:30px;
+  margin-top:40px;
+}
+.contentstitle{
+  font-size: 36px;
+  line-height: 40px;
+  margin: 35px 15px 10px;
+  text-align: left;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
