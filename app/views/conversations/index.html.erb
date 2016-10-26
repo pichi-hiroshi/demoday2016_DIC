@@ -9,12 +9,14 @@
           </p>
           <ul class="list-box">
             <% @conversations.each do |conversation| %>
-            
-            
+            　<li class="conversationpanel">
                 <% if conversation.target_user(current_user).present? %>
-                  <%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation), class: 'listlist' %>
-                <% end %>    
-              
+                  <% user = conversation.target_user(current_user) %>
+                  <span class="conversationpanelimage"><%= profile_img(user) %></span>
+                　<%= user.id %>
+                　<%= link_to user.name, conversation_messages_path(conversation), class: 'listlist' %>
+                <% end %>
+              </li>
             <% end %>
           </ul>
           

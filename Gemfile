@@ -76,3 +76,7 @@ gem 'jquery-turbolinks'
 gem 'pusher'
 
 gem 'font-awesome-rails'
+
+gem 'ransack'
+
+gem 'kaminari'

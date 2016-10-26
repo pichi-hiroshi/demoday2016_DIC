@@ -5,11 +5,15 @@ class BoardsController < ApplicationController
   def index
     
     if params[:category].present?
-      @boards = Board.where(category: params[:category])
+      
+      @boards = Board.where(category: params[:category]).page(params[:page])
+#       @boards = Board.tagged_with(params[:category]).order(created_at: :desc).page(params[:page]).per(3)
     else
-      @boards = Board.all
+      
+      @boards = Board.page(params[:page])
     end
       
+    
   end
   
   def new

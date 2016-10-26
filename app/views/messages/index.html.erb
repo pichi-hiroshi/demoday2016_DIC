@@ -6,8 +6,10 @@
           <%= link_to '以前のメッセージ', '?m=all' %>
         <% end %>
         
+        
+        
         <div class="ui segment list-container">
-          <p class="list-heading">メッセージ一覧</p>
+          <p class="list-heading">トーク</p>
 
               <% @messages.each do |message| %>
                 <% if message.body %>
@@ -15,15 +17,13 @@
                   <div class="messagetop">
                     <% user = User.find(message.user_id) %>
                     <%= profile_img(user) %>
-                    <div class="messageuser">
+                  </div>
+                  <div class="messageuser">
                       <p><%= user.name %></p>
                       <p><%= message.message_time %></p>
-                    </div>
-
                   </div>
-                  
-                  <p><%= message.body %></p>
-                  <Hr>
+                  <p class="messagemessage"><%= message.body %></p>
+                  <Hr style="margin:15px 20px 30px">
                 <% end %>
               <% end %>
 
@@ -31,7 +31,7 @@
         
         <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
           <div class="field messagefield">
-            <%= f.text_area :body, class: "form-control" %>
+            <%= f.text_area :body, placeholder: "メッセージを入力してください", class: "form-control" %>
           </div>
             <%= f.text_field :user_id, value: current_user.id, type: "hidden", class: "form-control"  %>
           <div>

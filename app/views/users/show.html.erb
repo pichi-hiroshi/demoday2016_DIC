@@ -5,7 +5,6 @@
     <p><%= @user.name %></p>
     <p><%= profile_img(@user) %></p>
     <p><%= @user.email %></p>
-    <%= link_to 'ユーザー情報の編集', edit_user_registration_path, class: 'btn btn-success' %>
     
     <div>
         <ul class="nav nav-tabs" role="tablist" id="usertab">
@@ -62,6 +61,11 @@
               </div>
             </div>
         </div>
+      <%= link_to edit_user_registration_path do %>
+        <div class="boardplus">
+          <p>プロフィールを編集</p>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

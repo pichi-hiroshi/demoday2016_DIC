@@ -37,11 +37,9 @@
                 
                 <p class="boardtitle"><%= board.board_title %></p>
                 
-                <p class="boarddiscription"><%=board.board_discription %></p>
-                
                 <div class="boardurl">
-                 <Hr style="margin:0">
-                 <p>参照元:<br /><span class="urlurl"><%= board.board_url %></span></p>
+                 <Hr style="margin:0 0 10px">
+                 <a href="<%= board.board_url %>">参照元を見る</a>
                 </div>
                 
               </div>
@@ -55,6 +53,13 @@
             <p><i class="fa fa-plus" aria-hidden="true"></i> 記事を追加する</p>
           </div>
         <% end %>
+        
+        <% if params[:category].present? %>
+          <%= paginate @boards %>
+        <% else %>
+          <%= paginate @boards %>
+        <% end %>
+        
       </div>
 
   </div>
