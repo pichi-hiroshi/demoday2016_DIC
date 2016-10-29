@@ -44,26 +44,27 @@
             <%= link_to user_path(user) do %>
               <div id="usercard">
                 <div class="row" id="profilecontents">
-                  <div id="profileimg">
-                    <% if user.image_url.blank? %>
-                      <%= profile_img(user) %>
-                    <% else %>
-                      <img src="<%= user.image_url %>" />
-                    <% end %>
+                  <div class"container-child">
+                    <div class="col-sm-4 col-xs-4">
+                      <div id="profileimg">
+                        <% if user.image_url.blank? %>
+                          <%= profile_img(user) %>
+                        <% else %>
+                          <img src="<%= user.image_url %>" />
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="col-sm-8 col-sm-8">
+                      <p id="username"><%= user.name %></p>
+                <% end %>
+                      <p id="useraffiliation"><%= user.affiliation %></p>
+                      <p id="userdiscription"><%= user.discription %></p>
+                    </div>
                   </div>
-                  <p><%= user.name %></p>
-            <% end %>
-                  <p><%= user.affiliation %></p>
-                  <p><%= user.discription %></p>
                 </div>  
-                  
-                <div class="row">
-                  <span><%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', class: 'btn btn-large btn-success'%></span>
-                  <span><%= render partial: 'follow_form', locals: { user: user } if signed_in?   %></span>
-                </div>
-                
+                <span id="usermessage"><%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', class: 'btn btn-large btn-success' %></span>
+                <span id="userfollow"><%= render partial: 'follow_form', locals: { user: user } if signed_in?   %></span>
               </div>
-              
           </div>
         <% end %>
       <% end %>
