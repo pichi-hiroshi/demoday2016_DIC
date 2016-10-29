@@ -5,11 +5,31 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    
+    @search = User.search(params[:q])
+    @topics = @search.result(distinct: true)
+    @topicsize = @topics.size
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @topics }
+    end
+      
   end
   
   def show
     @followed = current_user.followed_users
     @follower = current_user.followers
+    
+    @search = User.search(params[:q])
+    @topics = @search.result(distinct: true)
+    @topicsize = @topics.size
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @topics }
+    end
+    
   end
   
   private

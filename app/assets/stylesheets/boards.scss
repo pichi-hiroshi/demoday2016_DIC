@@ -5,15 +5,18 @@
 .page-top-btn {
   display: none;
   border-radius: 50px;
-  background: #336699;
-  width: 60px;
-  height: 60px;
+  background: #42454c center;
+  background-image: image_url("bullet_up.png");
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
   transition: all 0.3s;
   cursor: pointer;
   position: fixed;
   right: 30px;
   bottom: 30px;
-  z-index: 20;
+  z-index: 50;
+  opacity: 0.7;
   a {
     display: block;
     color: white;
@@ -21,8 +24,11 @@
     text-decoration: none;
   }
   &:hover {
-  opacity: 0.7;
+  opacity: 1;
   }
+}
+#scroll{
+  opacity: 0;
 }
 
 .share-buttons{
@@ -39,10 +45,11 @@
 
 .boardpanelsmall{
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid #e8eceb;
   border-radius: 5px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
   text-align: left;
-  height: 600px;
+  height: 330px;
   overflow: hidden;
   text-decoration:none;
 }
@@ -88,34 +95,73 @@
   bottom: 20px;
   width: 90%;
 }
-.boardurl p{
+.boardurl a{
   margin: 10px;
 }
 .urlurl{
   color: steelblue;
   word-wrap: break-word;
+  margin: 10px;
+  font-size:13px;
 }
 
 .boardplus{
-  background-color: #fff;
-  color: #666;
-  border-top: 1px solid #ddd;
-  border-left: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  background-color: #5bc0de;
+  color: #fff;
+  border-top: 1px solid #5bc0de;
+  border-left: 1px solid #5bc0de;
+  border-bottom: 1px solid #5bc0de;
   border-radius: 3px 0 0 3px;
-  box-shadow: 0 2px 2px 1px #ddd;
+  box-shadow: 0 2px 2px 1px #46b8da;
+  opacity: .9;
   padding-top: 12px;
-
   position: fixed;
   right: 0px;
-  bottom: 62px;
+  top: 97px;
   width: 200px;
   height: 50px;
+  z-index: 60;
 }
 .boardplus:hover{
-  background-color: #eee;
+  background-color: #31b0d5;
+  border-top: 1px solid #31b0d5;
+  border-left: 1px solid #31b0d5;
+  border-bottom: 1px solid #31b0d5;
+  box-shadow: 0 2px 2px 1px #269abc;
+  opacity: 1;
 }
 .boardplus p{
   text-align: center;
   font-size: 18px;
+}
+.snnbox{
+  position: fixed;
+  top: 200px;
+  left: 300px;
+}
+.showboardpanel{
+  margin-top: 30px;
+  height: 530px;
+}
+.boardshowurl{
+  position: absolute;
+  bottom: 5px;
+}
+.boardshowimg{
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+
+}
+
+.boardshowimg img{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 100%;
+  width: 100%;
+  max-height: auto;
 }

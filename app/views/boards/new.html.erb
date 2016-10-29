@@ -1,12 +1,26 @@
 <div id="main-section">
   <div id="main-contents-sub">
-    <%= form_for(@board) do |f| %>
-      <%= f.label :board_url %>
-      <%= f.text_field :board_url %>
-      <br>
-      <%= f.submit %>
-    <% end %>
-    
-    <%= link_to "一覧にもどる", boards_path %>
+    <div class="container">
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+        <div style="height:50px;display:block"></div>
+        <h1>記事作成フォーム</h1>
+        <div style="height:50px;display:block"></div>
+        <div style="text-align:left">
+          <%= form_for(@board) do |f| %>
+            <%= f.label :記事のURLを記入してください %>
+            <%= f.text_field :board_url, class: "form-control", placeholder: "記事URL" %>
+            <br>
+            <%= f.label :記事のカテゴリーを選択してください%>
+            <%= f.select :category, options_for_select(["technology","business","economic","market","education","sports"]), {}, {:class => "form-control"} %>
+            <br>
+            <br>
+            <%= f.submit "記事のページを作成する", class: "btn btn-info btn-block" %>
+          <% end %>
+          <br>
+        </div>
+          <%= link_to "記事一覧に戻る", root_path %>
+        
+      </div>
+    </div>  
   </div>
 </div>

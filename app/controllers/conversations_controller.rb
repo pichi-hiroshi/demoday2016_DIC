@@ -5,6 +5,15 @@ class ConversationsController < ApplicationController
   def index
     @users = User.all
     @conversations = Conversation.all
+    
+    @search = User.search(params[:q])
+    @topics = @search.result(distinct: true)
+    
+    respond_to do |format|
+      format.html
+      format.json {render json: @topics }
+    end
+    
   end
 
   def create

@@ -1,31 +1,82 @@
 <div id="main-section">
   <div id="main-contents-sub">
-    <div class="container">
-      <h2>ユーザー</h2>
-      <% @users.each do |user| %>
-          <div class="container-child col-md-4 col-sm-4 col-xs-6 ">
-            <div id="usercard">
-              <div class="row" id="profilecontents">
-                <div id="profileimg"><%= profile_img(user) %></div>
-                  <%= link_to user_path(user) do %>
-                    <p><%= user.name %></p>
-                    <% if user.id != current_user.id %>
-                      <li style="list-style:none">
-                        <div class="item">
-                          <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%>
-                        </div>
-                        <%= render partial: 'follow_form', locals: { user: user } if signed_in?   %>
-                      </li>
-                    <% end %>
-                  <% end %>
-                    <p><%= user.affiliation %></p>
-                    <p><%= user.discription %></p>
-              </div>
-              
-              <%= render 'follow_form', user: user %>
+    
+    <div class="searcharea collapse in" id="demo">
+      
+      <% unless params[:q].blank? %>
+      
+      <h1 class="searchtitle" style="margin-top:0;padding-top:10px">  検索結果</h1>
+
+        <% @topics.each do |topics| %>
+          <%= link_to user_path(topics) do %>
+            <div class="searchresults">
+              <span><img src="<%= topics.image_url %>" /></span>
+              <span style="margin-left:10px"><%= topics.name %></span>
             </div>
-          </div>
+          <% end %>
+        <% end %>
       <% end %>
+      </div>
+    </div>
+  
+    <div class="container">
+      
+      
+      <%= search_form_for @search do |f| %>
+      <% f.label :name_cont, '' %>
+      <%= f.search_field :name_cont, placeholder: '  ユーザーを検索する', class: 'searchbox' %>
+      
+      <div>
+      <%#= f.submit '', class: 'searchbtn' %>
+      <%#= button_tag sanitize('<i class="fa fa-search"></i> 検索'), :type => "submit",
+      :class =>"btn btn-default btn-s-md searchbtn", :data-toggle "collapse", :data-target "#demo" %>
+      
+      <button type="submit" class="btn btn-default btn-s-md searchbtn" data-toggle="collapse" data-target="#demo">
+        <i class="fa fa-search"></i> 検索
+      </button>
+      </div>
+      <% end %>
+      
+      <h2 class="contentstitle">ユーザー一覧</h2>
+      <% @users.each do |user| %>
+      　<% if user.id != current_user.id %>
+          <div class="container-child col-md-4 col-sm-4 col-xs-6 ">
+            <%= link_to user_path(user) do %>
+              <div id="usercard">
+                <div class="row" id="profilecontents">
+                  <div class"container-child">
+                    <div class="col-sm-4 col-xs-4">
+                      <div id="profileimg">
+                        <% if user.image_url.blank? %>
+                          <%= profile_img(user) %>
+                        <% else %>
+                          <img src="<%= user.image_url %>" />
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="col-sm-8 col-sm-8">
+                      <p id="username"><%= user.name %></p>
+                <% end %>
+                      <p id="useraffiliation"><%= user.affiliation %></p>
+                      <p id="userdiscription"><%= user.discription %></p>
+                    </div>
+                  </div>
+                </div>  
+                <span id="usermessage"><%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', class: 'btn btn-large btn-success' %></span>
+                <span id="userfollow"><%= render partial: 'follow_form', locals: { user: user } if signed_in?   %></span>
+              </div>
+          </div>
+        <% end %>
+      <% end %>
+    
+      <% if params[:q].blank? %>
+        <%= link_to user_path(current_user) do %>
+          <div class="boardplus">
+            <p>マイページを表示</p>
+          </div>
+        <% end %>
+      <% end %>
+      
     </div>
   </div>
 </div>

@@ -1,0 +1,28 @@
+
+        <%= form_for(@contact) do |f| %>
+          <%= f.label :お問い合わせ %>
+          <%= f.hidden_field :contents, class: "form-control", placeholder: "パスワード" %>
+          <br>
+          <%= f.label :メールアドレス %>
+          <%= f.hidden_field :mail, class: "form-control", placeholder: "パスワード" %>
+          <br>
+          <%= f.label :お問い合わせ %>
+          <p>お問い合わせ</p>
+          <p><%= @contact.contents %></p>
+          <p>メールアドレス</p>
+          <p><%= @contact.mail %></p>
+          
+          <%= f.submit '入力内容を確認する', class: "btn btn-info btn-block" %>
+        <% end %>
+
+
+
+        <%= form_for(@contact, url: choose_new_or_edit) do |f| %>
+          <%= f.label :お問い合わせ %>
+          <%= f.hidden_field :contents, class: "form-control", placeholder: "パスワード" %>
+          <br>
+          <%= f.label :メールアドレス %>
+          <%= f.hidden_field :mail, class: "form-control", placeholder: "パスワード" %>
+          <br>
+          <%= f.submit '戻る', class: "btn btn-info btn-block" %>
+        <% end %>

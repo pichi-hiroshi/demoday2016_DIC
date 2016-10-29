@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   get 'notifications/index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -14,24 +13,36 @@ Rails.application.routes.draw do
   
   resources :users, only: [:index, :show]
   
-    
-  resources :infos, only: [:index, :new, :create]
-  resources :boards, only: [:index, :new, :create,:edit,:update,:destroy,:show, :createpost] do
-    resources :posts do
-      resources :likes, only: [:create, :destroyrai]
-      
-      resources :comments
-      
-      collection do
-        post :confirm #ここのpostはコントローラー名にかかわらず一緒"
-      end
-    end
-    
+  resources :contacts, only: [:index, :new, :create, :edit, :update, :confirm] do
     collection do
       post :confirm
     end
   end
-    
+  
+  resources :infos, only: [:index, :new, :create]
+  
+  resources :boards do
+    resources :posts do
+      resources :likes, only: [:create, :destroy]
+      
+      resources :comments
+      
+      collection do
+        post :confirm
+      end
+    end
+
+    collection do
+      post :confirm
+    end
+  end
+
+=begin
+  resources :boards
+  resources :posts
+  resources :comments
+=end
+
   resources :relationships, only: [:create, :destroy]
   
   resources :conversations do

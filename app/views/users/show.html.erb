@@ -1,11 +1,55 @@
 <div id="main-section">
   <div id="main-contents-sub">
-    <p>show</p>
-    <p id="notice"><%= notice %></p>
-    <p><%= @user.name %></p>
-    <p><%= profile_img(@user) %></p>
-    <p><%= @user.email %></p>
-    <%= link_to 'ユーザー情報の編集', edit_user_registration_path, class: 'btn btn-success' %>
+    <div class="searcharea">
+      <div class="searcharea collapse in" id="demo">
+        <% unless params[:q].blank? %>
+        <h1 class="searchtitle" style="margin-top:0;padding-top:10px">  検索結果</h1>
+          <% @topics.each do |topics| %>
+            <%= link_to user_path(topics) do %>
+              <div class="searchresults">
+                <span><img src="<%= topics.image_url %>" /></span>
+                <span style="margin-left:10px"><%= topics.name %></span>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    
+    <%= search_form_for @search do |f| %>
+      <% f.label :name_cont, '' %>
+      <%= f.search_field :name_cont, placeholder: '  ユーザーを検索する', class: 'searchbox' %>
+      
+      <div>
+      <%#= f.submit '', class: 'searchbtn' %>
+      <%#= button_tag sanitize('<i class="fa fa-search"></i> 検索'), :type => "submit",
+      :class =>"btn btn-default btn-s-md searchbtn" %>
+      <button type="submit" class="btn btn-default btn-s-md searchbtn" data-toggle="collapse" data-target="#demo">
+        <i class="fa fa-search"></i> 検索
+      </button>
+      </div>
+    <% end %>
+    
+    <div style="height:50px;display:block"></div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 col-md-offset-3 col-sm-2 col-sm-offset-3">
+          <% if @user.image_url.blank? %>
+            <%= profile_img(@user) %>
+          <% else %>
+            <img src="<%= @user.image_url %>" />
+          <% end %>
+        </div>  
+        
+        <div class="col-md-4 col-sm-4" style="text-align:left">
+          <p><%= @user.name %></p>
+          <p><%= @user.email %></p>
+        </div>
+      </div>  
+    </div>
+    
+    <div style="height:50px;display:block"></div>
     
     <div>
         <ul class="nav nav-tabs" role="tablist" id="usertab">
@@ -25,43 +69,85 @@
             </div>
             <div class="tab-pane" id="tab_b" role="tabpanel">
               <%# ユーザーがフォローしている人 %>
+              <div style="height: 50px;display: block"></div>
                 <div class="container">
                   <% @followed.each do |user| %>
-                  <div class="container-child col-md-4 col-sm-4 col-xs-6 ">
-                    <div id="usercard">
-                      <div class="row" id="profilecontents">
-                        
-                        <div id="profileimg"><%= profile_img(user) %></div>
-                        <p><%= user.name %></p>
-                        <p><%= user.affiliation %></p>
-                        <p><%= user.discription %></p>      
-                        
+                  　
+                      <div class="container-child col-md-4 col-sm-4 col-xs-6 ">
+                        <%= link_to user_path(user) do %>
+                          <div id="usercard">
+                            <div class="row" id="profilecontents">
+                              <div class"container-child">
+                                <div class="col-sm-4 col-xs-4">
+                                  <div id="profileimg">
+                                    <% if user.image_url.blank? %>
+                                      <%= profile_img(user) %>
+                                    <% else %>
+                                      <img src="<%= user.image_url %>" />
+                                    <% end %>
+                                  </div>
+                                </div>
+                                <div class="col-sm-8 col-sm-8">
+                                  <p id="username"><%= user.name %></p>
+                            <% end %>
+                                  <p id="useraffiliation"><%= user.affiliation %></p>
+                                  <p id="userdiscription"><%= user.discription %></p>
+                                </div>
+                              </div>
+                            </div>  
+                            <span id="usermessage"><%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', class: 'btn btn-large btn-success' %></span>
+                            <span id="userfollow"><%= render partial: 'follow_form', locals: { user: user } if signed_in?   %></span>
+                          </div>
                       </div>
-                    </div>
-                  </div>
+                    
                   <% end %>
                 </div>
             </div>
         
             <div class="tab-pane" id="tab_c" role="tabpanel">
+              <div style="height: 50px;display: block"></div>
               <div class="container">
                   <% @follower.each do |user| %>
-                  <div class="container-child col-md-4 col-sm-4 col-xs-6 ">
-                    <div id="usercard">
-                      <div class="row" id="profilecontents">
-                        
-                        <div id="profileimg"><%= profile_img(user) %></div>
-                        <p><%= user.name %></p>
-                        <p><%= user.affiliation %></p>
-                        <p><%= user.discription %></p>      
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <% end %>
+                    
+                        <div class="container-child col-md-4 col-sm-4 col-xs-6 ">
+                          <%= link_to user_path(user) do %>
+                            <div id="usercard">
+                              <div class="row" id="profilecontents">
+                                <div class"container-child">
+                                  <div class="col-sm-4 col-xs-4">
+                                    <div id="profileimg">
+                                      <% if user.image_url.blank? %>
+                                        <%= profile_img(user) %>
+                                      <% else %>
+                                        <img src="<%= user.image_url %>" />
+                                      <% end %>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-8 col-sm-8">
+                                    <p id="username"><%= user.name %></p>
+                              <% end %>
+                                    <p id="useraffiliation"><%= user.affiliation %></p>
+                                    <p id="userdiscription"><%= user.discription %></p>
+                                  </div>
+                                </div>
+                              </div>  
+                              <span id="usermessage"><%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', class: 'btn btn-large btn-success' %></span>
+                              <span id="userfollow"><%= render partial: 'follow_form', locals: { user: user } if signed_in?   %></span>
+                            </div>
+                        </div>
+                     
+                    <% end %>
               </div>
             </div>
         </div>
+        <% if params[:q].blank? %>
+          <%= link_to edit_user_registration_path do %>
+            <div class="boardplus">
+              <p>プロフィールを編集</p>
+            </div>
+          <% end %>
+        <% end %>
+        
     </div>
   </div>
 </div>

@@ -1,9 +1,13 @@
-<%= form_for([post,comment], remote: true) do |f| %>
-  <%= f.hidden_field :post_id %>
-  <div class="field">
-    <%= f.text_field :content, placeholder: "内容", class: "form-control"  %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%# if comment.nil? %>
+  <%= form_for([board,post,comment], remote: true) do |f| %>
+    <%= f.hidden_field :post_id %>
+    <div class="field">
+      <%= f.text_field :content, placeholder: "内容", class: "form-control"  %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+<%# else %>
+<p>_show. comment わ～</p>
+<%# end %>

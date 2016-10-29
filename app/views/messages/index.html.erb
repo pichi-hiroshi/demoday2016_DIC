@@ -1,33 +1,76 @@
-<% if @over_ten %>
-  <%= link_to '以前のメッセージ', '?m=all' %>
-<% end %>
-
-<div class="ui segment">
-  <% @messages.each do |message| %>
-    <% if message.body %>
-      <% user = User.find(message.user_id) %>
-      <div class="item">
-        <div class="content">
-          <div class="header"><strong><%= user.name %></strong> <%= message.message_time %></div>
-          <div class="list">
-            <div class="item">
-              <i class="right triangle icon"></i>
-              <%= message.body %>
-            </div>
-          </div>
-        </div>
+<div id="main-section">
+  <div id="main-contents-sub">
+    
+    <div class="searcharea">
+      <div class="searcharea collapse in" id="demo">
+        <% unless params[:q].blank? %>
+        <h1 class="searchtitle" style="margin-top:0;padding-top:10px">  検索結果</h1>
+          <% @topics.each do |topics| %>
+            <%= link_to user_path(topics) do %>
+              <div class="searchresults">
+                <span><img src="<%= topics.name %>" /></span>
+                <span style="margin-left:10px"><%= topics.name %></span>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
+    </div>
+    
+    <div class="container">
+      
+    <%= search_form_for @search do |f| %>
+          <% f.label :name_cont, '' %>
+          <%= f.search_field :name_cont, placeholder: '  ユーザーを検索する', class: 'searchbox' %>
+          
+          <div>
+            <%#= f.submit '', class: 'searchbtn' %>
+            <%#= button_tag sanitize('<i class="fa fa-search"></i> 検索'), :type => "submit",:class =>"btn btn-default btn-s-md searchbtn" %>
+            <button type="submit" class="btn btn-default btn-s-md searchbtn" data-toggle="collapse" data-target="#demo">
+              <i class="fa fa-search"></i> 検索
+            </button>
+          </div>
     <% end %>
-  <% end %>
+      
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 showboard">
+        <% if @over_ten %>
+          <%= link_to '以前のメッセージ', '?m=all' %>
+        <% end %>
+        
+        
+        
+        <div class="ui segment list-container">
+          <p class="list-heading">トーク</p>
+
+              <% @messages.each do |message| %>
+                <% if message.body %>
+                  
+                  <div class="messagetop">
+                    <% user = User.find(message.user_id) %>
+                    <%= profile_img(user) %>
+                  </div>
+                  <div class="messageuser">
+                      <p><%= user.name %></p>
+                      <p><%= message.message_time %></p>
+                  </div>
+                  <p class="messagemessage"><%= message.body %></p>
+                  <Hr style="margin:15px 20px 30px">
+                <% end %>
+              <% end %>
+
+        </div>
+        
+        <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
+          <div class="field messagefield">
+            <%= f.text_area :body, placeholder: "メッセージを入力してください", class: "form-control" %>
+          </div>
+            <%= f.text_field :user_id, value: current_user.id, type: "hidden", class: "form-control"  %>
+          <div>
+            <%= f.submit "メッセージを送る", class: "btn btn-info btn-block"   %>
+          </div>
+        
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-  <div>
-    <%= f.submit "メッセージを送る" %>
-  </div>
-
-<% end %>

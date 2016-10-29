@@ -1,9 +1,38 @@
 class BoardsController < ApplicationController
   before_action :check_login
-  before_action :set_board, only: [:edit, :update, :destroy, :show]
+  before_action :set_board, only: [:edit, :update, :destroy, :show, :search]
   
   def index
-    @boards = Board.all
+    
+    if params[:category].present?
+      
+      @boards = Board.where(category: params[:category]).page(params[:page])
+#       @boards = Board.tagged_with(params[:category]).order(created_at: :desc).page(params[:page]).per(3)
+    else
+      
+      @boards = Board.page(params[:page])
+    end
+    
+    
+      @search = Board.search(params[:q])
+      @topics = @search.result(distinct: true)
+      @topicsize = @topics.size
+
+      respond_to do |format|
+        format.html
+        format.json {render json: @topics }
+      end
+  end
+  
+  def search
+    @search = Board.search(params[:q])
+    @topics = @search.result(distinct: true)
+    
+    respond_to do |format|
+      format.html
+      format.json {render json: @topics }
+    end
+    
   end
   
   def new
@@ -41,7 +70,7 @@ class BoardsController < ApplicationController
     
     @board.save
     
-    redirect_to board_path(@board.id)
+    redirect_to board_path(@board.id), notice: '記事を作成しました！'
 #    render :template => "user/show"
     
   end
@@ -65,6 +94,7 @@ class BoardsController < ApplicationController
   end
   
   def show
+    
     @post = @board.posts.build
     @posts = @board.posts
     
@@ -72,7 +102,15 @@ class BoardsController < ApplicationController
     @comments = @post.comments
     
     Notification.find(params[:notification_id]).update(read: true) if params[:notification_id]
+
+    @search = Board.search(params[:q])
+    @topics = @search.result(distinct: true)
     
+    respond_to do |format|
+      format.html
+      format.json {render json: @topics }
+    end
+
 =begin
     @posts = @board.posts
 #    @comments = @posts.comments
@@ -85,7 +123,7 @@ class BoardsController < ApplicationController
   
   private
     def boards_params
-      params.require(:board).permit(:board_url,:board_title,:board_content,:board_image,:board_discription)
+      params.require(:board).permit(:board_url,:board_title,:board_content,:board_image,:board_discription,:category)
     end
     
     def set_board

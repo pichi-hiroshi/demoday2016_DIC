@@ -3,6 +3,7 @@ class Board < ActiveRecord::Base
     belongs_to :dashboard
     has_many :posts
     
-    #1013追加
+    paginates_per 6
+    
     
 end

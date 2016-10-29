@@ -5,27 +5,53 @@
 #usercard{
     background:#FFF;
     border: 1px rgb(232, 236, 235) solid;
+    border-radius: 5px;
     box-shadow: rgba(0,0,0,0.1) 0px 1px 1px 0px;
-    margin:15px;
-}
-#profileimg{
-    float:left;
-    margin-top:20px;
-    margin-left:30px;
+    margin: 15px 0;
+    padding: 20px 0;
+    height: 200px;
 }
 #profileimg img{
-    width:50px;
-    height:50px;
-    border-radius: .2rem;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
 #profilecontents{
-    text-align:left;
-    margin-left:30px;
+    text-align: left;
+    margin-left: 30px;
 }
 #usertab{
-    text-align:center;
+    text-align: center;
 }
 #usertab li{
-    float:none;
-    display:inline-block;
+    float: none;
+    display: inline-block;
+}
+#username{
+    color: #333;
+    font-weight: bold;
+    font-size: 17px;
+    text-decoration: none;
+}
+#username:hover{
+    text-decoration: none;
+}
+#useraffiliation{
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+#userdiscription{
+    color: #999;
+    font-size: 12px;
+}
+#usermessage{
+    position: relative;
+    right: 70px;
+    bottom: -23px;
+}
+#userfollow{
+    position: relative;
+    left: 80px;
+    bottom:  10px;
 }

@@ -1,0 +1,23 @@
+<div id="main-section">
+  <div id="main-contents">
+    <div class="container">
+        
+        <%= search_form_for @search do |f| %>
+          <%= f.label :board_title_cont, 'タイトル' %>
+          <%= f.search_field :board_title_cont %>
+          
+          <div>
+            <%= f.submit '検索' %>
+          </div>
+        <% end %>
+      
+        <% @topics.each do |topics| %>
+          <%= topics.board_title %>
+        
+        <% end %>
+        
+    </div>
+  </div>
+</div>
+    
+    
