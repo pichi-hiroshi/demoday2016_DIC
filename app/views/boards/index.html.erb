@@ -14,53 +14,96 @@
 </div>
 
 
+
 <div id="main-section">
   <div id="main-contents">
-      <div class="container">
-        
-        
-        <h1 class="contentstitle">記事一覧</h1>
-
-        <% @boards.each do |board| %>
-          
-          <div class="boardpanelbig col-sm-4">
-            <%= link_to board_path(board) do %>
-              <div class="boardpanelsmall">
-                <div class="boardimg">
-                  <% if board.board_image.blank? %>
-                    <img src="<%= asset_path 'no_image.png' %>" />
-                  <% else %>
-                    <img src="<%= board.board_image %>" />
-                  <% end %>
+      
+      <div class="searcharea">
+        <div class="searcharea collapse in" id="demo">
+          <% unless params[:q].blank? %>
+          <h1 class="searchtitle" style="margin-top:0;padding-top:10px">  検索結果</h1>
+            <% @topics.each do |topics| %>
+              <%= link_to board_path(topics) do %>
+                <div class="searchresults">
+                  <span><img src="<%= topics.board_image %>" /></span>
+                  <span style="margin-left:10px"><%= topics.board_title %></span>
                 </div>
-                <Hr style="margin:0">
-                
-                <p class="boardtitle"><%= board.board_title %></p>
-                
-                <div class="boardurl">
-                 <Hr style="margin:0 0 10px">
-                 <a href="<%= board.board_url %>">参照元を見る</a>
-                </div>
-                
-              </div>
+              <% end %>
             <% end %>
-          </div>
-          
-        <% end %>
-        
-        <%= link_to new_board_path do %>
-          <div class="boardplus">
-            <p><i class="fa fa-plus" aria-hidden="true"></i> 記事を追加する</p>
-          </div>
-        <% end %>
-        
-        <% if params[:category].present? %>
-          <%= paginate @boards %>
-        <% else %>
-          <%= paginate @boards %>
-        <% end %>
-        
+          <% end %>
+        </div>
       </div>
-
+      
+      <% unless flash[:notice].blank? %>
+        <div class="noticeresults">
+          <p><%= notice %><%= alert %></p>
+        </div>
+      <% end %>
+      
+      <div class="container">
+        <div class="row">
+          <h1 class="contentstitle">記事一覧</h1>
+          <%= search_form_for @search do |f| %>
+            <% f.label :board_title_cont, '' %>
+            <%= f.search_field :board_title_cont, placeholder: '  記事を検索する', class: 'searchbox' %>
+            
+            <div>
+              <%#= f.submit '', class: 'searchbtn' %>
+              <%#= button_tag sanitize('<i class="fa fa-search"></i> 検索'), :type => "submit",:class =>"btn btn-default btn-s-md searchbtn" %>
+              <button type="submit" class="btn btn-default btn-s-md searchbtn" data-toggle="collapse" data-target="#demo">
+                <i class="fa fa-search"></i> 検索
+              </button>
+            </div>
+          <% end %>
+  
+          <% @boards.each do |board| %>
+            
+            <div class="boardpanelbig col-sm-4">
+              <%= link_to board_path(board) do %>
+                <div class="boardpanelsmall">
+                  <div class="boardimg">
+                    <% if board.board_image.blank? %>
+                      <img src="<%= asset_path 'no_image.png' %>" />
+                    <% else %>
+                      <img src="<%= board.board_image %>" />
+                    <% end %>
+                  </div>
+                  <Hr style="margin:0">
+                  
+                  <p class="boardtitle"><%= board.board_title %></p>
+                  
+                  <div class="boardurl">
+                   <Hr style="margin:0 0 10px">
+                   <a href="<%= board.board_url %>">参照元を見る</a>
+                  </div>
+                  
+                </div>
+              <% end %>
+            </div>
+            
+          <% end %>
+        </div>
+        
+          <% unless flash[:notice] || flash[:alert] %>
+            <% if params[:q].blank? %>
+              <%= link_to new_board_path do %>
+                <div class="boardplus">
+                  <p><i class="fa fa-plus" aria-hidden="true"></i> 記事を追加する</p>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        
+        
+        
+        <div class="row">
+          <% if params[:category].present? %>
+            <%= paginate @boards %>
+          <% else %>
+            <%= paginate @boards %>
+          <% end %>
+        </div>
+      
+    </div>
   </div>
 </div>

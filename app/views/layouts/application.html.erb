@@ -7,6 +7,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="<%= asset_path 'nfab.ico' %>">
   <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
   <!-- <script src="https://js.pusher.com/3.0/pusher.min.js"></script> -->
   <% if user_signed_in? %>
@@ -40,40 +41,62 @@
     <div id="logo">
       <a href="/"></a>
     </div>
+    <% unless user_signed_in? %>
     <div class="container">
+    <% end %>
       
-      <ul>
+      <ul class="wrap">
+        
       <% if user_signed_in? %>
-        <li><%= link_to 'ユーザー一覧', users_path %></li>
-        <li><a href="/boards/new"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
-<!-- 余裕があったら背景色を変える機能を追加
-         <li><i class="fa fa-cog" aria-hidden="true"></i></li>
--->
-        <li class="dropdown wrap">
+        <li class="wrapli">
+          <a href="/boards/new" id="usericon">
+            <i class="fa fa-plus" aria-hidden="true"><br>
+            <span>記事作成</span></i>
+          </a>
+        </li>
+        
+        <li class="wrapli">
+          <a href="/contacts/new" id="usericon">
+            <i class="fa fa-question" aria-hidden="true"><br>
+            <span>お問い合わせ</span></i>
+          </a>
+        </li>
+
+        <li class="bell wrapli">
+          <%= link_to  notifications_index_path, class: "navbar-brand usericon" do %>
+            <i class="fa fa-bell fa-lg">
+              <span id="unread_count"><%= @notifications_count %></span><br>
+              <span style="padding-left:20px">お知らせ</span>
+            </i>
+        </li>
+        <% end %>
+
+        <li class="dropdown wrapli" style="border-left: 1px solid #ddd">
           <a href="#" class="dropdown-toggle"  id="usericon" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user" aria-hidden="true"></i>
-            <i class="fa fa-angle-down" aria-hidden="true"></i>
-            <span>user popup</span>
+            <i class="fa fa-angle-down" aria-hidden="true"><br>
+            <span>ユーザー</span></i>
           </a>
           
           <ul class="dropdown-menu userdropdown">
             <div>
-              <%= profile_img(current_user) %>
-              <%= current_user.name %>
-              <%= current_user.email %>
+              <p><%= current_user.name %></p>
+              <% if current_user.image_url.blank? %>
+                <span  class="dropdownimg"><%= profile_img(current_user) %></span>
+              <% else %>
+                <img src="<%= current_user.image_url %>" class="dropdownimg" />
+              <% end %>
+              
             </div>
             <Hr>
             <li><%= link_to 'ユーザー情報の編集', edit_user_registration_path(current_user) %></li>
             <li><%= link_to 'マイページ', user_path(current_user) %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           </ul>
-          
         </li>
-        
-        <li><%= link_to  notifications_index_path, class: "navbar-brand" do %><i class="fa fa-bell fa-1x"><span id="unread_count"><%= @notifications_count %></span></i></li>
-        <% end %>
+  
       <% else %>
-        <li><button type="button" class="btn signupbtn" data-toggle="modal" data-target="#loginmodal">ログイン／無料で登録</button></li>
+        <li class="outwrapli"><button type="button" class="btn signupbtn" data-toggle="modal" data-target="#loginmodal">ログイン／無料で登録</button></li>
           <div class="modal fade" id="loginmodal">
             <div id="login-overlay" class="modal-dialog">
               <div class="modal-content">
@@ -160,7 +183,10 @@
       </div>
       <% end %>
       </ul>
-    </div>
+  <% unless user_signed_in? %>
+  </div>
+  <% end %>
+    
   </header>
 <%
 =begin

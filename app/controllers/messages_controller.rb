@@ -23,6 +23,15 @@ class MessagesController < ApplicationController
     end
     
     @message = @conversation.messages.build
+    
+    @search = User.search(params[:q])
+    @topics = @search.result(distinct: true)
+    
+    respond_to do |format|
+      format.html
+      format.json {render json: @topics }
+    end
+    
   end
 
   def create

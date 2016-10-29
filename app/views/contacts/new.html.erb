@@ -1,0 +1,40 @@
+<div id="main-section">
+  <div id="main-contents-sub">
+    
+    <% if @contact.errors.any? %>
+      <div class="noticeresults">
+        <% @contact.errors.full_messages.each do |msg| %>
+          <li><p><%= msg %></p></li>
+        <% end %>
+      </div>
+    <% end %>
+     　  
+    <div class="container">
+      <div style="height: 30px; display:block"></div>
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 contactform">
+        <h1>お問い合わせフォーム</h1>
+        <p><a href="/terms" target="_blank">「利用規約」</a><a href="/privacy" target="_blank">「プライバシポリシー」</a>にご合意いただいた上上、ご記入ください。</p>
+        <p>ご入力いただきました情報はお問い合わせの対応対応のためだけに使用いたします。</p>
+        <div style="height: 50px; display:block"></div>
+        <%= form_for(@contact) do |f| %>
+          <%= f.label :お問い合わせ内容 %>
+          <%= f.text_field :contents, class: "form-control cont1", placeholder: "お問い合わせ内容" %>
+          <br>
+          <%= f.label :メールアドレス %>
+          <%= f.text_field :mail, class: "form-control", placeholder: "メールアドレス" %>
+          <br>
+          
+          <%= f.check_box :reply, {:checked => true} %>
+          <span>返信をご希望の方はチェックしてください。</span>
+          <br>
+          <%= f.check_box :privacy, {:checked => false} %>
+          <span><a href="/terms" target="_blank">「利用規約」</a><a href="/privacy" target="_blank">「プライバシポリシー」</a>に合意する</span>
+          <br>
+          <div style="height: 30px; display:block"></div>
+          <%= f.submit '入力内容を確認する', class: "btn btn-info btn-block" %>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>

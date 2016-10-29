@@ -74,20 +74,39 @@ li{
 }
 
 /*ヘッダー用*/
+#usericon{
+  margin: 0;
+  padding: 4px 20px 0;
+  text-decoration: none;
+}
+
 #usericon i{
-  margin:0 5px;
-  font-size:20px;
+  margin:0 auto;
   color: #666;
 }
 
 .userdropdown{
   padding:15px 0;
+  width: 180px;
+  z-index: 80;
+  position:relative;
 }
-
+.userdropdown div p{
+  text-align: center;
+  font-weight: bold;
+}
+.dropdownimg{
+  width: 80px;
+  height: 80px;
+  margin-left: 50px;
+  
+}
 .userdropdown li{
   float: left;
   padding: 0 0.5em;
   width:100%;
+  z-index: 80;
+  position:relative;
 }
 
 .userdropdown li a{
@@ -97,6 +116,7 @@ li{
   margin: 0;
   text-decoration: none;
   text-align: left;
+  z-index: 80;
 }
 
 .userdropdown li a:hover{
@@ -104,11 +124,44 @@ li{
   background-color: #00B0DA;
   border-radius: 3px;
 }
-.wrap a span{
-  opacity: 0;
+.bell{
+  padding-top: 5px!important;
 }
-.wrap a span:hover{
-  opacity: 1;
+.bell a{
+  margin-bottom: 19px;
+}
+.bell a i{
+  color: #666;
+  padding-left:20px;
+  margin-top: -20px;
+}
+.wrap{
+  height:45px;
+  margin-top: -10px;
+}
+.wrapli{
+  border-right: 1px solid #ddd;
+  
+  text-align: center;
+  width: 120px;
+  padding-top: 15px;
+}
+.wrapli:hover{
+  background-color: #eee;
+}
+
+.wrapli a i{
+  position: relative;
+  display: inline;
+  font-size: 30px;
+}
+.wrapli a i span{
+  font-size: 13px;
+  text-align: center;
+  vertical-align: middle;
+}
+.outwrapli{
+  padding-top: 15px;
 }
 
 /*サイドバー用*/
@@ -330,7 +383,95 @@ footer p{
 .pagination span:hover{
   background-color: #ddd;
 }
-.conversationpanel image{
-  width:50px;
-  height:50px;
+.conversationpanelimage{
+  width:100px;
+  height:100px;
+  margin: 15px;
+}
+.conversationpanel{
+  border-bottom: 1px solid #ececed;
+}
+.conversationpanel:hover{
+  background-color: #ececed;
+}
+
+.searchbox{
+  position: fixed;
+  top:20px;
+  left:350px;
+  z-index: 70;
+  height: 40px;
+  width: 300px;
+  background-color: #ededec;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+}
+.searchbtn{
+  border-radius: 20px;
+  border: 1px solide #ddd;
+  position: fixed;
+  top: 20px;
+  height: 40px;
+  width: 80px;
+  left: 580px;
+  z-index: 70;
+  color: #666;
+}
+.searcharea{
+  background-color: #fff;
+  z-index: 70;
+}
+.searchresults{
+  text-align: left;
+  padding: 10px 50px;
+  border-bottom: 1px solid #eee;
+}
+.searchresults:hover{
+  background-color: #ededec;
+}
+.searchresults span img{
+  height: 30px;
+  width: 30px;
+}
+.searchtitle{
+  font-size: 36px;
+  line-height: 40px;
+  margin: 35px 0 10px 45px;
+  text-align: left;
+  padding-top: 20px!important;
+}
+.noticeresults{
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  padding: 20px 35px 10px;
+}
+.noticeresults p{
+  font-size: 18px;
+}
+.contactform{
+  text-align: left;
+}
+.cont1{
+  height: 120px;
+}
+.ent-car div{
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ent-car div img{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+.carousel-control.left, .carousel-control.right{
+  background-image: none!important;
 }

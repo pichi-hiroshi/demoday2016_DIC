@@ -9,6 +9,21 @@ class NoticeMailer < ApplicationMailer
     @greeting = "Hi"
 
     mail to: "hrs.takahashi7@gmail.com",
-      subject: '【Achieve】ブログが投稿されました'
+      subject: 'Newslideからお問い合わせが来ました'
   end
+  
+  def sendmail_contact(contact)
+    @contact = contact
+
+    mail to: "hrs.takahashi7@gmail.com",
+      subject: 'Newslideからお問い合わせが来ました'
+  end
+  
+  def sendmail_reply(contact)
+    @contact = contact
+    
+    mail to: @contact.mail,
+      subject: '【Newslide】お問い合わせありがとうございました'
+  end
+  
 end

@@ -80,3 +80,5 @@ gem 'font-awesome-rails'
 gem 'ransack'
 
 gem 'kaminari'
+
+gem 'fullpage-rails'
