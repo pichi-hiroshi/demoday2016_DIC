@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   end
   
   resources :infos, only: [:index, :new, :create]
-  
+
+=begin
   resources :boards do
     resources :posts do
       resources :likes, only: [:create, :destroy]
@@ -36,12 +37,16 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
-
-=begin
-  resources :boards
-  resources :posts
-  resources :comments
 =end
+
+  resources :boards do
+    resources :posts
+  end
+
+  resources :posts do
+    resources :comments
+  end
+
 
   resources :relationships, only: [:create, :destroy]
   

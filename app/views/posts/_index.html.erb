@@ -1,22 +1,43 @@
 <ul>
-    
-    
-  <p>posts/_index.html.erb</p>
+
   <% posts.each do |post| %>
     <% unless post.id.nil? %>
       <li>
-          <p class="left"><%= post.user.name %>さんがポストしました。</p>
-           <p class="left"><%= post.title %></p>         
-          <p class="left"><%= post.message %></p>
-          <p class="left"><img src="<%= post.avatar %>" /></p>
-          <% if current_user.id == post.user.id %>
-            <p class="right">
-                <p>編集</p>
-                <p>削除</p>
-            </p>
-            <Hr>
+          <div class="row">
+            <%= link_to user_path(@user) do %>
+            <div id="postimg">
+              <% if post.user.image_url.blank? %>
+                <%= profile_img(post.user) %>
+              <% else %>
+                <img src="<%= post.user.image_url %>" />
+              <% end %>
+            </div>
+            <p class="left" id="postname"><%= post.user.name %><% end %>さんが投稿したスライド</p>
+          </div>
+          <div style="height:3px;display:block"></div>
+          
+          <%= link_to post_path(post.id) do %>
+            <div class="postslide">
+              <p class="left" id="slidetitle"><%= post.title %></p>
+              <Hr style="margin:10px 0">
+              <p class="left" id="slidemessage"><%= post.message %></p>
+              <p class="left" id="slideimg"><img src="<%= post.avatar %>" /></p>
+              <p class="left" id="slidedatasource">出所:<%= post.datasource %></p>
+              <p class="left" id="slidedatasourceurl"><a href="<%= post.datasource_url %>"><%= post.datasource_url %></a></p>
+            </div>
           <% end %>
+            <span style="float:left;padding-left:5px;padding-top:5px;color:#999">
+              作成日時 : <%= post.created_at.strftime("%Y/%m/%d %p %l:%M") %>
+            </span>
+          <% if current_user.id == post.user.id %>
+            <span style="float:right;padding-top:5px">
+                <a href="#" style="padding-right:5px"><span>編集</span></a>
+                <a href="#"><span style="padding-right:5px">削除</span></a>
+            </span>
+          <% end %>
+          <div style="height:70px;display:block"></div>
       </li>
+      
     <% end %>
   <% end %>
 </ul>

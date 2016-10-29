@@ -37,7 +37,7 @@
         </div>
       <% end %>
       
-    <div class="container">
+    
         
     <%= search_form_for @search do |f| %>
           <% f.label :board_title_cont, '' %>
@@ -51,93 +51,98 @@
             </button>
           </div>
     <% end %>
-        
+    
+    <div style="background-color:#FBFBFB">
+      <div class="container">    
         <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 showboard">
-            <div class="boardpanelsmall showboardpanel" style="position:relative">
-                
-                 <div class="boardshowimg">
-                   <% if @board.board_image.blank? %>
-                     <img src="<%= asset_path 'no_image.png' %>" />
-                   <% else %>
-                     <img src="<%= @board.board_image %>" />
-                   <% end %>
-                 </div>
-                 <Hr style="margin:0">
-                     
-                 <% if @board.board_title.blank? %>
-                   <p class="boardtitle">タイトルが読み取れませんでした。編集ボタンからタイトルを入力してください。</p>
+          <div class="boardpanelsmall showboardpanel" style="position:relative">
+              
+               <div class="boardshowimg">
+                 <% if @board.board_image.blank? %>
+                   <img src="<%= asset_path 'no_image.png' %>" />
                  <% else %>
-                   <p class="boardtitle"><%= @board.board_title %></p>
+                   <img src="<%= @board.board_image %>" />
                  <% end %>
-                 
-                 
-                 <% if @board.board_discription.blank? %>
-                   <p class="boarddiscription">説明文が読み取れませんでした。編集ボタンから説明文を入力してください。</p>
-                 <% else %>
-                   <p class="boarddiscription"><%= @board.board_discription %></p>
-                 <% end %>
-                
-                <p class="urlurl boardshowurl"> 参照元:<br /><a href="<%= @board.board_url %>"><%= @board.board_url %></a></p>
-                 
-            </div>
-
-        
-<%
-=begin
-%>
-            <% @posts.each do |posts| %>
-             <p>post id:<%= posts.id %></p>
-             <p>post title:<%= posts.title %></p>
-             <p>post message:<%= posts.message %></p>
-             <Hr>
-            <% end %>
-        
-            <%= link_to "編集", edit_board_path(@board), class: 'btn btn-success' %>
-            <%#= link_to "スライドを作成する", new_post_path(board_id: @board.id ), class: 'btn btn-default' %>
-            <%= createpost %>
+               </div>
+               
+               <% if @board.board_title.blank? %>
+                 <p class="boardtitle">タイトルが読み取れませんでした。編集ボタンからタイトルを入力してください。</p>
+               <% else %>
+                 <p class="boardtitle"><%= @board.board_title %></p>
+               <% end %>
+               
+               
+               <% if @board.board_discription.blank? %>
+                 <p class="boarddiscription">説明文が読み取れませんでした。編集ボタンから説明文を入力してください。</p>
+               <% else %>
+                 <p class="boarddiscription"><%= @board.board_discription %></p>
+               <% end %>
+              
+              <p class="urlurl boardshowurl"> 参照元:<br /><a href="<%= @board.board_url %>"><%= @board.board_url %></a></p>
+               
+          </div>
+          <% if current_user.id == @board.user_id %>
+            <span style="float:right;padding-top:5px">
+                <a href="#" style="padding-right:5px"><span>編集</span></a>
+                <a href="#"><span style="padding-right:5px">削除</span></a>
+            </span>
+          <% end %>
             
-<%
-=end
-%>
+          <div style="height:30px;display:block"></div>
 
-             
+          <div id="usercardboardshow">
+            <p style="text-align:left;margin-left:40px;font-size:17px">記事を作成したユーザー</p>
+            <Hr style="margin: 10px 0">
+            <div class="row" id="profilecontents">
+              <div class"container-child">
+                <div class="col-sm-3 col-xs-3">
+                  <%= link_to user_path(@user) do %> 
+                    <div id="profileimg">
+                      <% if @user.image_url.blank? %>
+                      <%= profile_img(@user) %>
+                      <% else %>
+                        <img src="<%= @user.image_url %>" />
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-sm-7 col-sm-7">
+                    <p id="username"><%= @user.name %></p>
+                  <% end %>
+                  <p id="useraffiliation"><%= @user.affiliation %></p>
+                  <p id="userdiscription"><%= @user.discription %></p>
+                </div>
+              </div>
+            </div>  
+            
+            <span id="usermessageboardshow"><%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: 'btn btn-large btn-success' %></span>
+            <span id="userfollowboardshow"><%= render partial: 'users/follow_form', locals: { user: @user } if signed_in?   %></span>
+          </div>
+
+        <div style="height:30px;display:block"></div>  
+        
+        </div>
+      </div>    
+    </div>
+    
+    <div class="container">    
+        <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 showboard">
+
+            <div style="height:30px;display:block"></div>
             <div id="posts_area">
-              <%= render partial: 'posts/index', locals: { posts: @posts, board: @board } %>
+              <% if @posts.ids.blank? %>
+                <div class="slidewhich">
+                 <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span>この記事に対して投稿されたスライドはありません。</span></p>
+                </div>
+              <% else %>
+                <%= render partial: 'posts/index', locals: { posts: @posts, board: @board } %>
+              <% end %>
             </div>
-            
-            
-            <% @posts.each do |selfpost| %>
-              <p>コレ<%= selfpost.id %></p>
-              <%= render partial: 'posts/show', locals: {post: selfpost, board: @board } %>
-              
-              
-              
-              <%# if @comment.content.empty? %>
-                
-                <%#= render partial: 'comments/form', locals: { comment: @comment, post: selfpost, board: @board} %>
-              <%# else %>
-                
-              <%# end %>
-              
-            <% end %>
-            
+
             <%= render partial: 'posts/form', locals: { post: @post, board: @board } %>
-            <p>partial posts/like</p>
-            <%#= render partial: 'posts/like', locals: { post: @post, board: @board } %>
-         
+
+        
             
-            <% if current_user.id == @board.user_id %>
-              <p>編集</p>
-            <% end %>
-            <p>戻る</p>
-          
-            
-            
-            
-            
-            <p style="height:500px"></p>
-            
-            <p>SNSシェアは未完成</p>
+            <p style="height:50px"></p>
             <%= stylesheet_link_tag 'social_button' %>
             
                 <ul class="share-buttons js-socialActionArea">
@@ -145,17 +150,8 @@
                   <li class="twitter" data-url="<%= request.url %>"><a href="https://twitter.com/share" class="twitter-share-button" data-via="pichi_hiroshi"><img src="<%= asset_path "twitter.PNG" %>" /></a></li>
                 </ul>
                 
-            <p style="height:500px"></p>
+            <p style="height:50px"></p>
             
-            
-
-
-            
-            
-            
-            
-            
-            <%#= http://qiita.com/okappy/items/1e0687027bd9efea321f %>
         <div class="snnbox">
             <i class="fa fa-heart-o fa-3x" aria-hidden="true"></i>
             <i class="fa fa-heart fa-3x" aria-hidden="true"></i>

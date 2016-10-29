@@ -475,3 +475,93 @@ footer p{
 .carousel-control.left, .carousel-control.right{
   background-image: none!important;
 }
+#postimg{
+ width:70px;
+ height:50px;
+ float: left;
+ padding-left: 20px;
+}
+#postimg img{
+  border-radius:50px;
+}
+#postname{
+  margin-top: 10px;
+  padding-left: 80px;
+  font-size: 17px;
+}
+.postslide{
+  background-color: #FFF;
+  border: 1px solid #e8eceb;
+  box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: #666;
+}
+.postslide:hover{
+  text-decoration: none;
+}
+#slidetitle{
+  font-size: 17px;
+  margin:15px 20px;
+  color: #666;
+  text-decoration: none;
+}
+#slidetitle:hover{
+  text-decoration: none;
+}
+#slidemessage{
+  margin:0 30px;
+  padding:15px 0 20px;
+  color: #666;
+}
+#slideimg{
+  padding:0 30px;
+}
+#slidedatasource{
+  margin:0 20px;
+  padding-top: 20px;
+  font-size: 13px;
+  color: #666;
+}
+#slidedatasourceurl{
+  margin:0 20px 10px;
+  padding-left: 30px;
+  font-size: 13px;
+  color: #666;
+}
+.newslideform{
+  background-color: #FFF;
+  border: 1px solid #e8eceb;
+  box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+  color: #666;
+
+}
+.newslideforminner{
+  padding: 10px 20px 30px;
+  text-align: left;
+}
+#newslideformtitle{
+  font-size: 17px;
+  margin:15px 20px;  
+}
+.slidewhich{
+  color: red;
+  height: 50px;
+  border: 1px solid #e8eceb;
+  background-color: #fff;
+  margin-bottom: 50px;
+  padding-top: 13px;
+}
+.slidewhich {
+  font-size: 17px;
+}
+.commentpanel{
+  background-color: #FFF;
+  border: 1px solid #e8eceb;
+  box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+  padding: 15px;
+}
+#postcontent{
+  margin: 20px 40px 20px 80px;
+
+  
+}

@@ -1,15 +1,35 @@
-<p>posts/_form.html.erb</p>
-<%#= form_for([board,post], remote: true) do |f| %>
-<%#= form_for([board,post]), authenticity_token: true do |f| %>
 <%= form_for([board,post]) do |f| %>
-<%#= form_for(post) do |f| %>
   <%= f.hidden_field :board_id %>
-  <div class="field">
-      <%= f.text_field :title, placeholder: "タイトル", class: "form-control" %>
-      <%= f.text_field :message, placeholder: "本文", class: "form-control" %>
-      <%= f.file_field :avatar %>
-  </div>
-  <div class="actions">
-      <%= f.submit %>
+  <div class="newslideform">
+    <div class="field">
+        <p id="newslideformtitle">スライド投稿フォーム</p>
+          <Hr>
+      <div class="newslideforminner">
+          <span>タイトル</span>
+          <%= f.text_field :title, placeholder: "タイトル", class: "form-control" %>
+          <br>
+          <span>本文</span>
+          <%= f.text_field :message, placeholder: "本文", class: "form-control" %>
+          <br>
+          <span style="text-align:left;display:block">画像を添付する場合は、使用するファイルを選択してください。</span>
+          <%= f.file_field :avatar %>
+          <br>
+          <span>出所参照先</span>
+          <%= f.text_field :datasource, placeholder: "出所参照先", class: "form-control" %>
+          <br>
+          <span>出所URL</span>
+          <%= f.text_field :datasource_url, placeholder: "出所URL", class: "form-control" %>
+      
+          <div class="actions">
+            <br>
+            <br>
+            <div class="col-sm-8 col-sm-offset-2">
+              <%= f.submit 'スライドを投稿する',class: "btn btn-info btn-block" %>
+            </div>
+            <br>
+            <br>
+          </div>
+      </div>
+    </div>
   </div>
 <% end %>

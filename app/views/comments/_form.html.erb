@@ -1,13 +1,22 @@
-<%# if comment.nil? %>
-  <%= form_for([board,post,comment], remote: true) do |f| %>
-    <%= f.hidden_field :post_id %>
-    <div class="field">
-      <%= f.text_field :content, placeholder: "内容", class: "form-control"  %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-  <% end %>
-<%# else %>
-<p>_show. comment わ～</p>
-<%# end %>
+<div class="newslideform">
+     
+  <p id="newslideformtitle">コメント投稿フォーム</p>
+  <Hr>
+  <div class="newslideforminner">
+        <%= form_for([post,comment], remote: true) do |f| %>
+          <%= f.hidden_field :post_id %>
+          <div class="field">
+            <%= f.text_field :content, placeholder: "コメントの内容", class: "form-control"  %>
+          </div>
+          <br>
+          <br>
+          <div class="actions col-sm-8 col-sm-offset-2">
+            <%= f.submit'コメントを投稿する',class: "btn btn-info btn-block"  %>
+          </div>
+          <br>
+          <br>
+        <% end %>
+
+
+  </div>
+</div>

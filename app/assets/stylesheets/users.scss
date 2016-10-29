@@ -11,6 +11,15 @@
     padding: 20px 0;
     height: 200px;
 }
+#usercardboardshow{
+    background:#FFF;
+    border: 1px rgb(232, 236, 235) solid;
+    border-radius: 5px;
+    box-shadow: rgba(0,0,0,0.1) 0px 1px 1px 0px;
+    margin: 15px 0;
+    padding: 20px 0;
+    height: 220px;
+}
 #profileimg img{
     width: 100%;
     height: auto;
@@ -44,6 +53,8 @@
 #userdiscription{
     color: #999;
     font-size: 12px;
+    margin-top: 10px;
+    line-height: 14px;
 }
 #usermessage{
     position: relative;
@@ -54,4 +65,35 @@
     position: relative;
     left: 80px;
     bottom:  10px;
+}
+#usernames{
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 24px;
+}
+#useraffiliations{
+    color: #999;
+    margin-bottom: 5px;
+}
+#userdiscriptions{
+    color: #999;
+    margin-top: 10px;
+    line-height: 14px;
+}
+
+.usershowbottom{
+    background-color: #f5f5f5;
+}
+.active a{
+    background-color: #F5F5F5!important;
+}
+#usermessageboardshow{
+    position: relative;
+    right: 20px;
+    bottom: -3px;
+}
+#userfollowboardshow{
+    position: relative;
+    left: 130px;
+    bottom:  30px;
 }

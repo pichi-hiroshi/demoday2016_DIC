@@ -1,24 +1,90 @@
-<p id="notice"><%= notice %></p>
-<div class="child row">
-  <div class="wrapper col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-    <div class="post-text">
-      <p class="left"><strong>タイトル</strong></p>
-      <p class="left"><%= @post.title %></p>
-      <p class="left"><strong>内容</strong></p>
-      <p class="left"><%= @post.message %></p>
-      <p class="right">
-        <strong>作成時間:</strong>
-        <%= @post.created_at.strftime("%y/%m/%d %p %l:%M") %>
-      </p>
-    </div>
-    <p>コメント一覧</p>
-    <div id="comments_area">
-      <%= render partial: 'comments/index', locals: { comments: @comments, post: @post } %>
-    </div>
-    <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
-    <% if current_user.id == @post.user_id %>
-      <%= link_to '編集', edit_post_path(@post) %> |
+<div id="main-section">
+  <div id="main-contents-sub">
+    
+    <% if @post.errors.any? %>
+      <div class="noticeresults">
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><p><%= msg %></p></li>
+        <% end %>
+      </div>
     <% end %>
-    <%= link_to '戻る', posts_path %>
+
+<%
+=begin
+%>
+    <% unless flash[:notice].blank? %>
+      <div class="noticeresults">
+        <p><%= notice %><%= alert %></p>
+      </div>
+    <% end %>
+<%
+=end
+%>
+    <div style="background-color:#FBFBFB">
+      <div class="container">
+        <div style="height: 30px; display:block"></div>
+        <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 contactform">
+          
+          <div style="height:30px;display:block"></div>
+          <div id="posts_area">
+            <% if @comments.ids.blank? %>
+              <div class="slidewhich">
+               <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span>この記事に対して投稿されたスライドはありません。</span></p>
+              </div>
+            <% else %>
+              <%= render partial: 'posts/index', locals: { posts: @posts, board: @board } %>
+            <% end %>
+          </div>
+      
+  　　　   　　<div class="row">
+              <div id="postimg">
+                <% if @post.user.image_url.blank? %>
+                  <%= profile_img(@post.user) %>
+                <% else %>
+                  <img src="<%= @post.user.image_url %>" />
+                <% end %>
+              </div>
+              <p class="left" id="postname"><%= @post.user.name %>さんが投稿したスライド</p>
+            </div>
+            <div style="height:3px;display:block"></div>
+            
+  
+              <div class="postslide">
+                <p class="left" id="slidetitle"><%= @post.title %></p>
+                <Hr style="margin:10px 0">
+                <p class="left" id="slidemessage"><%= @post.message %></p>
+                <p class="left" id="slideimg"><img src="<%= @post.avatar %>" /></p>
+                <p class="left" id="slidedatasource">出所:<%= @post.datasource %></p>
+                <p class="left" id="slidedatasourceurl"><a href="<%= @post.datasource_url %>"><%= @post.datasource_url %></a></p>
+              </div>
+              <span style="float:left;padding-left:5px;padding-top:5px;color:#999">
+                作成日時 : <%= @post.created_at.strftime("%Y/%m/%d %p %l:%M") %>
+              </span>
+            <% if current_user.id == @post.user.id %>
+              <span style="float:right;padding-top:5px">
+                  <a href="#" style="padding-right:5px"><span>編集</span></a>
+                  <a href="#"><span style="padding-right:5px">削除</span></a>
+              </span>
+            <% end %>
+            <div style="height:70px;display:block"></div>
+        </div>  
+        
+        
+      </div>
+    </div>
+    
+    <div class="container">
+      <div style="height: 30px; display:block"></div>
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 contactform">
+      
+      
+          <%= render partial: 'comments/index', locals: { comments: @comments, post: @post } %>
+           
+          <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+          
+          
+       
+      </div>
+    </div>
   </div>
 </div>

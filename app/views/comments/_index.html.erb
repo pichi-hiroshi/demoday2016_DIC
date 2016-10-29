@@ -2,14 +2,42 @@
   <% comments.each do |comment| %>
     <% unless comment.id.nil? %>
       <li>
-        <p class="left"><%= comment.user.name %>さんがコメントしました。</p>
-        <p class="left"><%= comment.content %></p>
-        <% if current_user.id == comment.user.id %>
-          <p class="right">
-            <%= link_to '', edit_post_comment_path(post, comment), class: "fa fa-pencil-square-o fa-lg" %>
-            <%= link_to '', post_comment_path(post, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
-          </p>
-        <% end %>
+        <div class="commentpanel">
+          <div class="row">
+            <%= link_to user_path(comment.user) do %>
+            <div id="postimg">
+              <% if comment.user.image_url.blank? %>
+                <%= profile_img(comment.user) %>
+              <% else %>
+                <img src="<%= comment.user.image_url %>" />
+              <% end %>
+            </div>
+            <p class="left" id="postname"><%= comment.user.name %><% end %>さんのコメント</p>
+          </div>
+        
+          <div class="row">
+            <p class="left" id="postcontent"><%= comment.content %></p>
+            <% if current_user.id == comment.user.id %>
+              <p class="right">
+                <%#= link_to '', edit_post_comment_path(post, comment), class: "fa fa-pencil-square-o fa-lg" %>
+                <%#= link_to '', post_comment_path(post, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+        
+        <div class="row">
+          <span style="float:left;padding-left:20px;padding-top:5px;color:#999">
+            作成日時 : <%= post.created_at.strftime("%Y/%m/%d %p %l:%M") %>
+          </span>
+            <% if current_user.id == post.user.id %>
+              <span style="float:right;padding-top:5px">
+                <a href="#" style="padding-right:5px"><span>編集</span></a>
+                <a href="#"><span style="padding-right:20px">削除</span></a>
+              </span>
+            <% end %>
+        </div>
+        <div style="height:40px;display:block"></div>
       </li>
     <% end %>
   <% end %>

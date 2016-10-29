@@ -1,5 +1,5 @@
 <div id="main-section">
-  <div id="main-contents-sub">
+  <div id="main-contents-sub" style="background-color: #fbfbfb">
     <div class="searcharea">
       <div class="searcharea collapse in" id="demo">
         <% unless params[:q].blank? %>
@@ -34,7 +34,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-2 col-md-offset-3 col-sm-2 col-sm-offset-3">
+        <div class="col-md-2 col-md-offset-3 col-sm-2 col-sm-offset-3" id="profileimg" >
           <% if @user.image_url.blank? %>
             <%= profile_img(@user) %>
           <% else %>
@@ -43,8 +43,9 @@
         </div>  
         
         <div class="col-md-4 col-sm-4" style="text-align:left">
-          <p><%= @user.name %></p>
-          <p><%= @user.email %></p>
+          <p id="usernames"><%= @user.name %></p>
+          <p id="useraffiliations"><%= @user.affiliation %></p>
+          <p id="userdiscriptions"><%= @user.discription %></p>
         </div>
       </div>  
     </div>
@@ -54,20 +55,86 @@
     <div>
         <ul class="nav nav-tabs" role="tablist" id="usertab">
             <li class="active" role="presentation">
-                <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">+ slide</a>
+                <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">作成した記事：<%= @boards.size %></a>
+            </li>
+            <li class="presentation">
+                <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">作成したスライド：<%= @posts.size %></a>
             </li>
             <li role="presentation">
-                <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">フォロー：<%= @followed.size %></a>
+                <a aria-controls="tab_c" data-toggle="tab" href="#tab_c" role="tab">フォロー：<%= @followed.size %></a>
             </li>
             <li role="presentation">
-                <a aria-controls="tab_c" data-toggle="tab" href="#tab_c" role="tab">フォロワー：<%= @follower.size %></a>
+                <a aria-controls="tab_d" data-toggle="tab" href="#tab_d" role="tab">フォロワー：<%= @follower.size %></a>
             </li>
         </ul>
-        <div class="tab-content">
+        
+        <div class="tab-content usershowbottom">
             <div class="tab-pane active" id="tab_a" role="tabpanel">
-                <p>タブA</p>
+              <%# ユーザーがpickした記事 %>
+              
+              <div class="container">
+              <p style="height:30px"></p>
+              <% @boards.each do |board| %>
+              
+                <div class="boardpanelbig col-sm-4">
+                  <%= link_to board_path(board) do %>
+                  <div class="boardpanelsmall">
+                    <div class="boardimg">
+                      <% if board.board_image.blank? %>
+                        <img src="<%= asset_path 'no_image.png' %>" />
+                      <% else %>
+                        <img src="<%= board.board_image %>" />
+                      <% end %>
+                    </div>
+                    <Hr style="margin:0">
+                    
+                    <p class="boardtitle"><%= board.board_title %></p>
+                    
+                    <div class="boardurl">
+                      <Hr style="margin:0 0 10px">
+                      <a href="<%= board.board_url %>">参照元を見る</a>
+                    </div>
+                  </div>
+                 <% end %>
+                </div>
+              
+              <% end %>
+              </div>
             </div>
+            
             <div class="tab-pane" id="tab_b" role="tabpanel">
+              <%# ユーザーが作成したスライド %>
+              
+                <div class="container">
+                <p style="height:30px"></p>
+                <% @posts.each do |post| %>
+                  <div class="col-md-4 col-sm-4 contactform">
+  
+                    <div style="height:3px;display:block"></div>
+                  <%= link_to post_path(post.id) do %>
+                    <div class="postslide">
+                      <p class="left" id="slidetitle"><%= post.title %></p>
+                      <Hr style="margin:10px 0">
+                      <p class="left" id="slidemessage"><%= post.message %></p>
+                      <p class="left" id="slideimg"><img src="<%= post.avatar %>" /></p>
+                      <p class="left" id="slidedatasource">出所:<%= post.datasource %></p>
+                      <p class="left" id="slidedatasourceurl"><a href="<%= post.datasource_url %>"><%= post.datasource_url %></a></p>
+                    </div>
+                  <% end %>
+                    <span style="float:left;padding-left:5px;padding-top:5px;color:#999">
+                      作成日時 : <%= post.created_at.strftime("%Y/%m/%d %p %l:%M") %>
+                    </span>
+                    
+                    <div style="height:70px;display:block"></div>
+              
+                  </div>  
+              
+              <% end %>
+              </div>
+            </div>
+            
+            
+            <div class="tab-pane" id="tab_c" role="tabpanel">
               <%# ユーザーがフォローしている人 %>
               <div style="height: 50px;display: block"></div>
                 <div class="container">
@@ -87,7 +154,7 @@
                                     <% end %>
                                   </div>
                                 </div>
-                                <div class="col-sm-8 col-sm-8">
+                                <div class="col-sm-7 col-sm-7">
                                   <p id="username"><%= user.name %></p>
                             <% end %>
                                   <p id="useraffiliation"><%= user.affiliation %></p>
@@ -104,7 +171,7 @@
                 </div>
             </div>
         
-            <div class="tab-pane" id="tab_c" role="tabpanel">
+            <div class="tab-pane" id="tab_d" role="tabpanel">
               <div style="height: 50px;display: block"></div>
               <div class="container">
                   <% @follower.each do |user| %>
@@ -123,7 +190,7 @@
                                       <% end %>
                                     </div>
                                   </div>
-                                  <div class="col-sm-8 col-sm-8">
+                                  <div class="col-sm-7 col-sm-7">
                                     <p id="username"><%= user.name %></p>
                               <% end %>
                                     <p id="useraffiliation"><%= user.affiliation %></p>
@@ -143,7 +210,7 @@
         <% if params[:q].blank? %>
           <%= link_to edit_user_registration_path do %>
             <div class="boardplus">
-              <p>プロフィールを編集</p>
+              <p>マイページを編集</p>
             </div>
           <% end %>
         <% end %>

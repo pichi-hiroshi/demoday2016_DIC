@@ -97,7 +97,7 @@ class PostsController < ApplicationController
   
   private
     def post_params
-      params.require(:post).permit(:title,:message,:board_id,:avatar)
+      params.require(:post).permit(:title,:message,:board_id,:avatar,:datasource,:datasource_url)
     end
     
     def set_post
